@@ -1,0 +1,77 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+body {
+
+  max-width: 1520px;
+  margin-inline: auto;
+
+}
+
+/* ****************************utility classes********************************************* */
+
+
+.flex{
+  display:flex;
+  background-color:red
+}
+
+.gap-05{
+  column-gap:.5rem;
+}
+.align-items--center{
+  align-items:center;
+
+}
+
+.flow-1{
+  margin-block-end:1rem;
+}
+
+.padding-inline{
+  padding-inline:1rem
+}
+/* **************************************************************************** */
+.container {
+  padding-inline: 2rem;
+  background-color: lightblue;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 60px 1fr;
+}
+
+.sidebar {
+  grid-column: 1 / span 3;
+  background-color: yellow;
+}
+
+.main {
+  grid-column: 4 /span 9;
+  background-color: lightgreen;
+}
+
+
+.channel-nav{
+  height:100%;
+ padding-inline: 1rem;
+}
+
+
+
+.photo-container > img{
+  object-fit: cover;
+  width: 42px;
+  aspect-ratio: 1;
+  border: 1px solid black
+}

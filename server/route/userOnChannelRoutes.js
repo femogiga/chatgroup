@@ -1,10 +1,11 @@
-const { addUserToChannel } = require('../controllers/userOnChannelController')
+const {
+  addUserToChannel,
+  getUsersInChannel,
+} = require('../controllers/userOnChannelController');
 
-const router = require('express').Router()
+const router = require('express').Router();
 
+router.post('/', addUserToChannel);
+router.get('/', getUsersInChannel);
 
-router.post('/',addUserToChannel)
-
-
-
-module.exports =router
+module.exports = router;
