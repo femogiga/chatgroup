@@ -10,27 +10,36 @@ hr {
     display: block;
     width: 40%;
     height: 1px;
+    border: 1px solid #828282;
 }
 
 /* *****************************************Form component to send Message*************************************************** */
 .send-message-form {
-    position: relative;
-    /* background-color: blue; */
+    position: sticky;
+    z-index: 3;
+    width: 100%;
+    bottom: 1rem;
 }
 
 .send-message-form input[type="text"] {
     width: 100%;
+
     height: 52px;
     border-radius: 8px;
     border: unset;
     background-color: #3C393F;
+    /* width:50em;
+    max-width:60rem; */
+}
 
+.absolute-cont {
+    position: relative;
 }
 
 .send-button {
     position: absolute;
     right: .3rem;
-    bottom: .4rem
+    bottom: .4rem;
 }
 
 
