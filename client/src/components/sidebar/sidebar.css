@@ -1,0 +1,35 @@
+.channel-nav {
+    height: 100%;
+    /* padding-inline: 1rem; */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+.photo-container>img {
+    object-fit: cover;
+    width: 42px;
+    aspect-ratio: 1;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+
+.sidebar-footer {
+    background-color: chartreuse;
+}
+
+.login {
+    height: 100%;
+    /* background-color: blue; */
+}
+
+
+.main-header p {
+    height: 100%;
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}

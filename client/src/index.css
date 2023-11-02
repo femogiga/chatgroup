@@ -1,6 +1,10 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
+  --bg-clr-dark: #120F13;
+  --clr-gray: #828282;
+  --clr-heavydark: #0B090C;
+  --clr-dark-mid: #252329;
 }
 
 *,
@@ -8,6 +12,7 @@
 *::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 
@@ -16,62 +21,104 @@ body {
 
   max-width: 1520px;
   margin-inline: auto;
+  height: 100vh;
+
 
 }
+
+
 
 /* ****************************utility classes********************************************* */
 
 
-.flex{
-  display:flex;
-  background-color:red
+.flex {
+  display: flex;
+  /* background-color: red */
 }
 
-.gap-05{
-  column-gap:.5rem;
+.gap-05 {
+  column-gap: .5rem;
 }
-.align-items--center{
-  align-items:center;
+
+.align-items--center {
+  align-items: center;
 
 }
 
-.flow-1{
-  margin-block-end:1rem;
+.flow-1 {
+  margin-block-end: 1rem;
 }
 
-.padding-inline{
-  padding-inline:1rem
+.padding-inline {
+  padding-inline: 1rem
 }
+
+.bold-500 {
+  font-weight: 500;
+}
+
+.bold-700 {
+  font-weight: 700;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.font-gray {
+  color: var(--clr-gray);
+}
+
 /* **************************************************************************** */
 .container {
-  padding-inline: 2rem;
+  /* padding-inline: 2rem; */
   background-color: lightblue;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 60px 1fr;
+  /* grid-template-rows: 60px 1fr; */
 }
 
 .sidebar {
+  display: grid;
   grid-column: 1 / span 3;
-  background-color: yellow;
+  /* background-color: yellow; */
+  grid-template-rows: 60px 1fr 75px;
+  height: 100vh;
+  background-color: var(--bg-clr-dark);
+  color: white;
+}
+
+.sidebar-body {
+  grid-row: 2;
+  padding-block: 1rem
+}
+
+.sidebar-footer {
+  grid-row: 3;
+  color: var(--clr-heavydark);
+
 }
 
 .main {
+  display: grid;
+  height: 100vh;
+  color: white;
   grid-column: 4 /span 9;
-  background-color: lightgreen;
+  grid-template-rows: 60px 1fr;
+
 }
 
+.main-header {
+  grid-row: 1;
+  /* box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .25); */
+  background-color: var(--clr-dark-mid);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 
-.channel-nav{
-  height:100%;
- padding-inline: 1rem;
+
 }
 
-
-
-.photo-container > img{
-  object-fit: cover;
-  width: 42px;
-  aspect-ratio: 1;
-  border: 1px solid black
+.main-body {
+  grid-row: 2;
+  background-color: coral;
+  background-color: var(--clr-dark-mid);
 }
