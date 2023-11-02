@@ -139,4 +139,9 @@ img {
 .main-body {
   grid-row: 2;
   background-color: var(--clr-dark-mid);
+  overflow-y: scroll;
+
 }
+ ::-webkit-scrollbar {
+   display: none;
+ }

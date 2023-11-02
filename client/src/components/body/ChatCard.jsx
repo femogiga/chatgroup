@@ -7,9 +7,9 @@ const ChatCard = () => {
         </div>
         <div>
           <div>
-            <div className='flex gap-1 text-light-gray'>
+            <div className='flex gap-1 text-light-gray align-items--center'>
               <p className=''>Neille Francis</p>
-              <p>yesterday at 2:29AM</p>
+              <p style={{ fontSize: '.75rem' }}>yesterday at 2:29AM</p>
             </div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. sequi eum
