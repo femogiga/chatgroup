@@ -6,15 +6,19 @@ const userRoute = require('./route/userRoutes');
 const chatRoute = require('./route/chatRoutes');
 const channelRoute = require('./route/channelRoutes');
 const userOnChannelRoute = require('./route/userOnChannelRoutes');
+const authMiddleware = require('./authentication/authMiddleware');
+const authRoute = require('./authentication/authRoute');
 
 const app = express();
-app.use(morgan('tiny'));
+app.use(morgan('common'));
 app.use(cors());
 app.use(express.json());
-app.use('/users', userRoute);
-app.use('/chats', chatRoute);
-app.use('/channels', channelRoute);
-app.use('/subscribe', userOnChannelRoute);
+app.use('/users',authMiddleware, userRoute);
+app.use('/chats', authMiddleware, chatRoute);
+app.use('/channels', authMiddleware, channelRoute);
+app.use('/subscribe', authMiddleware, userOnChannelRoute);
+app.use('/auth', authRoute);
+
 app.get('/', (req, res) => {
   res.send('Welcome to my application');
 });
