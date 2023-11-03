@@ -24,3 +24,25 @@
 .login {
     height: 100%;
 }
+
+
+input[type="search"] {
+    width: 100%;
+    height: 3rem;
+    border-radius: 8px;
+    background-color: #3C393F;
+}
+
+.search-form {
+    position: relative;
+}
+
+.search-form svg {
+    position: absolute;
+    left: .7rem;
+    top: .8rem
+}
+
+::placeholder {
+    padding-left: 2.4rem;
+}

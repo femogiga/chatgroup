@@ -13,7 +13,7 @@ const app = express();
 app.use(morgan('common'));
 app.use(cors());
 app.use(express.json());
-app.use('/users',authMiddleware, userRoute);
+app.use('/users', authMiddleware, userRoute);
 app.use('/chats', authMiddleware, chatRoute);
 app.use('/channels', authMiddleware, channelRoute);
 app.use('/subscribe', authMiddleware, userOnChannelRoute);
