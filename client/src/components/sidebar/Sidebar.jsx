@@ -4,12 +4,13 @@ import ChannelHeader from './ChannelHeader';
 import Login from './Login';
 import { Link } from 'react-router-dom';
 import AllChannel from './AllChannel';
-import ChannelListHeader from './ChannelListHeader';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 
 const Sidebar = () => {
   return (
     <aside className='sidebar' style={{ paddingInline: '1rem' }}>
-      <AllChannel  />
+      <AllChannel />
       <div className='sidebar-body'>
         <ChannelHeader />
         {/* <ChannelListHeader/> */}
@@ -27,6 +28,7 @@ const Sidebar = () => {
       </div>
       <footer>
         <Login />
+       
       </footer>
     </aside>
   );

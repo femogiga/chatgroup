@@ -85,6 +85,10 @@ a {
   justify-content: space-between;
 }
 
+.justify--center{
+  justify-content: center;
+}
+
 .font-gray {
   color: var(--clr-gray);
 }
@@ -116,6 +120,7 @@ a {
   height: 100vh;
   background-color: var(--bg-clr-dark);
   color: white;
+  position:relative;
 }
 
 .sidebar-body {

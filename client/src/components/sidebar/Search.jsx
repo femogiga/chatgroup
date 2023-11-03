@@ -1,7 +1,6 @@
-import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 
-const ChannelListHeader = () => {
+const Search = () => {
   return (
     <article>
       <form className='search-form flow-2'>
@@ -17,4 +16,4 @@ const ChannelListHeader = () => {
   );
 };
 
-export default ChannelListHeader;
+export default Search;
