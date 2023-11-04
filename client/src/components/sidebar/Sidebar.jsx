@@ -4,8 +4,6 @@ import ChannelHeader from './ChannelHeader';
 import Login from './Login';
 import { Link } from 'react-router-dom';
 import AllChannel from './AllChannel';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
 import Account from './Account';
 
 const Sidebar = () => {
@@ -29,7 +27,6 @@ const Sidebar = () => {
       </div>
       <footer className='sidebar-footer'>
         <Login />
-        <Account />
       </footer>
     </aside>
   );

@@ -128,12 +128,13 @@ a {
   padding-inline: unset;
   width:100%;
   /* background-color: aliceblue; */
+
 }
 
 .sidebar-body {
   grid-row: 2;
   padding-block: 1rem;
- 
+
 }
 
 .sidebar-footer {

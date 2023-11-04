@@ -1,6 +1,6 @@
 export const abbreviate = (word) => {
   const arr = word.split(' ');
-  console.log('=====>', arr);
+  // console.log('=====>', arr);
   let firstLetter = arr[0][0];
   let secondLetter = '';
   if (arr.length <= 1) {
