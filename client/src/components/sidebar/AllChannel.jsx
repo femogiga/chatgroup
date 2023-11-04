@@ -1,13 +1,13 @@
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setListToShow } from '../../features/sidebar/sidebarSlice';
+import { setSidebarToShow } from '../../features/sidebar/sidebarSlice';
 const AllChannel = () => {
 const dispatch = useDispatch()
-const listToShow = useSelector((state)=>state.sidebar.listToShow)
+const sidebarToShow = useSelector((state)=>state.sidebar.sidebarToShow)
   const handleGotoChannelList = (e) => {
     e.preventDefault()
-    dispatch(setListToShow(true))
+    dispatch(setSidebarToShow(true))
   }
   return (
     <div className='channel-nav'>

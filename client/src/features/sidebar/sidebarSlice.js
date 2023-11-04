@@ -4,18 +4,22 @@ export const sidebarSlice = createSlice({
   name: 'sidebar',
   initialState: {
     accountModalVisible: false,
-    listToShow : false
+    sidebarToShow: false,
+    roomId:1,
   },
   reducers: {
     setAccountModalVisible: (state) => {
       state.accountModalVisible = !state.accountModalVisible;
     },
-    setListToShow: (state,action) => {
-      state.listToShow = action.payload;
+    setSidebarToShow: (state,action) => {
+      state.sidebarToShow = action.payload;
+    },
+    setRoomId: (state, action) => {
+      state.roomId = action.payload;
     }
   },
 });
 
-export const { setAccountModalVisible, setListToShow } = sidebarSlice.actions;
+export const { setAccountModalVisible, setSidebarToShow,setRoomId } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

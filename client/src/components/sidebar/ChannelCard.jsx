@@ -1,10 +1,10 @@
 import { abbreviate } from '../../utility/abbreviation';
 import { Link } from 'react-router-dom';
 
-const ChannelCard = ({ title }) => {
+const ChannelCard = ({ title, onClick }) => {
   title = title || 'FRONTEND DEVELOPERS';
   return (
-    <Link>
+    <Link onClick={onClick}>
       <div className='flex gap-1 align-items--center flow-2'>
         <p
           className='flex place-item'

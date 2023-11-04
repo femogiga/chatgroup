@@ -6,12 +6,12 @@ import SidebarList from './components/sidebar/SidebarList';
 import CreateChannelModal from './components/body/CreateChannelModal';
 
 function App() {
-  const listToShow = useSelector((state) => state.sidebar.listToShow);
+  const sidebarToShow = useSelector((state) => state.sidebar.sidebarToShow);
 
   return (
     <div>
       <Container>
-        {listToShow ?  <SidebarList />:<Sidebar /> }
+        {sidebarToShow ? <SidebarList /> : <Sidebar />}
         <Main />
       </Container>
       {/* <CreateChannelModal/> */}
