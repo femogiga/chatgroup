@@ -3,7 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 const AddChannel = () => {
   return (
-    <div className='channel-nav flex gap-05 align-items--center flow-1 space-between'>
+    <div className='sidebar-header shadow flex gap-05 align-items--center flow-1 space-between'>
       <h3>Channel</h3>
       <IconButton sx={{ backgroundColor: '#252329' }}>
         <AddIcon
