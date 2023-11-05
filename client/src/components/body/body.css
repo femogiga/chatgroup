@@ -18,18 +18,20 @@ hr {
     position: sticky;
     z-index: 3;
     width: 100%;
-    bottom: 0rem;
+    bottom: 0;
 }
 
 .send-message-form input[type="text"] {
     width: 100%;
-
+    color:white;
     height: 52px;
     border-radius: 8px;
     border: unset;
     background-color: #3C393F;
+    padding-inline-start:1rem;
     /* width:50em;
     max-width:60rem; */
+
 }
 
 .absolute-cont {

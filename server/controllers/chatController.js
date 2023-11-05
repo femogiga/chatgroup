@@ -14,11 +14,22 @@ const allChat = async (req, res, next) => {
 
 const allChatGroupByDate = async (req, res, next) => {
   try {
-    const chats = await prisma.$queryRaw`
-      SELECT id, content, "authorId", "roomId", TO_CHAR("createdAt", 'YYYY-MM-DD') as created_date
-      FROM "Chat"
-      GROUP BY id, content, "authorId", "roomId", TO_CHAR("createdAt", 'YYYY-MM-DD');
-    `;
+    const chats = await prisma.chat.findMany({
+      include: {
+        author: {
+          select: {
+            firstname: true,
+            lastname: true,
+          },
+        },
+        room: {
+          select: {
+            name: true,
+            description: true,
+          },
+        },
+      },
+    });
     res.status(200).json(chats);
   } catch (err) {
     console.error(err);

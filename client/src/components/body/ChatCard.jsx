@@ -1,4 +1,5 @@
-const ChatCard = () => {
+const ChatCard = ({ content, firstName, lastName, messageDate}) => {
+  console.log("firstname===>",firstName)
   return (
     <article className='chat-card flow-2'>
       <div className='flex gap-1'>
@@ -8,12 +9,13 @@ const ChatCard = () => {
         <div>
           <div>
             <div className='flex gap-1 text-light-gray align-items--center'>
-              <p className=''>Neille Francis</p>
-              <p style={{ fontSize: '.75rem' }}>yesterday at 2:29AM</p>
+              <p className=''>{ firstName + " " + lastName}</p>
+              <p style={{ fontSize: '.75rem' }}>{ messageDate}</p>
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. sequi eum
-              nobis .
+              {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. sequi eum
+              nobis . */}
+              {content}
             </p>
           </div>
         </div>

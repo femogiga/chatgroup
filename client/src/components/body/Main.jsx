@@ -6,6 +6,8 @@ import SendIcon from '@mui/icons-material/Send';
 import { useChatData } from '../../api/chatData';
 import { useChannelData } from '../../api/channelData';
 import { useSelector } from 'react-redux';
+import { useUserData } from './../../api/userData';
+import { dateFormattter } from './../../utility/dateFormatter';
 const Main = () => {
   const roomId = useSelector((state) => state.sidebar.roomId);
   const {
@@ -18,8 +20,15 @@ const Main = () => {
     error: channelError,
     data: channelData,
   } = useChannelData();
+  const {
+    isPending: isUserPending,
+    error: userError,
+    data: userData,
+  } = useUserData();
+
   console.log('chat====>', chatData);
   console.log('channel====>', channelData);
+  console.log('userData====>', userData);
   const channelName = isChannelPending
     ? 'Pending'
     : channelData[roomId - 1].name.toUpperCase();
@@ -31,27 +40,52 @@ const Main = () => {
       </header>
       <main className='main-body' style={{ padding: '3rem' }}>
         <section className='flow-2'>
+          {chatData &&
+            chatData
+              .filter((item) => item.roomId === roomId)
+              .map((chat, index) =>
+                dateFormattter(chatData[index].createdAt) !== dateFormattter(chatData[index - 1]?.createdAt) ? (
+                  <>
+                    <Seperator />
+                    <ChatCard
+                      key={`chat_${chat.id}`}
+                      content={chat.content}
+                      firstName={userData[chat.authorId]?.firstname}
+                      lastName={userData[chat.authorId]?.lastname}
+                      messageDate={chat.createdAt}
+                    />
+                  </>
+                ) : (
+                  <ChatCard
+                    key={`chat_${chat.id}`}
+                    content={chat.content}
+                    firstName={userData[chat.authorId]?.firstname}
+                    lastName={userData[chat.authorId]?.lastname}
+                    messageDate={chat.createdAt}
+                  />
+                )
+              )}
+
+          {/* <ChatCard />
           <ChatCard />
           <ChatCard />
-          <ChatCard />
-          <ChatCard />
-          <Seperator />
+          <Seperator /> */}
         </section>
 
         <section className='flow-2'>
+          {/* <ChatCard />
           <ChatCard />
-          <ChatCard />
-          <ChatCard />
+          <ChatCard /> */}
           {/* <ChatCard /> */}
           <Seperator />
         </section>
 
         <section className='flow-2'>
+          {/* <ChatCard />
           <ChatCard />
           <ChatCard />
           <ChatCard />
-          {/* <ChatCard /> */}
-          <Seperator />
+          <Seperator /> */}
         </section>
         <form className='send-message-form'>
           <div className='absolute-cont'>
