@@ -7,7 +7,22 @@ const allChat = async (req, res, next) => {
     const chats = await prisma.chat.findMany();
     res.status(200).json(chats);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ err: err });
+  }
+};
+
+const allChatGroupByDate = async (req, res, next) => {
+  try {
+    const chats = await prisma.$queryRaw`
+      SELECT id, content, "authorId", "roomId", TO_CHAR("createdAt", 'YYYY-MM-DD') as created_date
+      FROM "Chat"
+      GROUP BY id, content, "authorId", "roomId", TO_CHAR("createdAt", 'YYYY-MM-DD');
+    `;
+    res.status(200).json(chats);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -40,4 +55,4 @@ const postChat = async (req, res, next) => {
   }
 };
 
-module.exports = { allChat, chatById, postChat };
+module.exports = { allChat, chatById, postChat, allChatGroupByDate };
