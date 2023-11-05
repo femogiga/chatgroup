@@ -16,4 +16,8 @@ const post = (url, data) => {
   return axios.post(`${baseUrl}${url}`, data);
 };
 
-export default { get, post };
+const getById = (url, id) => {
+  return axios.get(`${baseUrl}${url}${id}`);
+};
+
+export default { get, post, getById };

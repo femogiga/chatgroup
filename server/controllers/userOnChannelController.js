@@ -19,7 +19,7 @@ const addUserToChannel = async (req, res, next) => {
 
 const getUsersInChannel = async (req, res, next) => {
   try {
-    const { channelId } = req.body;
+    const  channelId  = req.params.id;
     const usersInChannel = await prisma.usersOnChannels.findMany({
       where: {
         channelId: parseInt(channelId),
@@ -29,7 +29,7 @@ const getUsersInChannel = async (req, res, next) => {
       },
     });
 
-    // console.log('Users in Channel:', usersInChannel);
+    console.log('Users in Channel:', usersInChannel);
     res.status(200).json(usersInChannel);
   } catch (err) {
     res.status(500).json(err);

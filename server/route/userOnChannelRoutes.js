@@ -6,6 +6,6 @@ const {
 const router = require('express').Router();
 
 router.post('/', addUserToChannel);
-router.get('/', getUsersInChannel);
+router.get('/:id', getUsersInChannel);
 
 module.exports = router;

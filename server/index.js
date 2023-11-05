@@ -21,7 +21,7 @@ app.use(express.json());
 app.use('/users', userRoute);
 app.use('/chats', chatRoute);
 app.use('/channels', channelRoute);
-app.use('/subscribe', userOnChannelRoute);
+app.use('/subscriptions', userOnChannelRoute);
 app.use('/auth', authRoute);
 
 app.get('/', (req, res) => {
