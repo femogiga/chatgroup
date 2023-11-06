@@ -2,11 +2,11 @@ const {
   allChat,
   chatById,
   postChat,
-  allChatGroupByDate,
+  reformedChatData,
 } = require('../controllers/chatController');
 
 const router = require('express').Router();
-router.get('/groupedbydate',allChatGroupByDate)
+router.get('/groupedbydate',reformedChatData)
 router.get('/:id', chatById);
 router.post('/', postChat);
 router.get('/', allChat);

@@ -12,25 +12,26 @@ const allChat = async (req, res, next) => {
   }
 };
 
-const allChatGroupByDate = async (req, res, next) => {
+const reformedChatData = async (req, res, next) => {
   try {
-    const chats = await prisma.chat.findMany({
-      include: {
-        author: {
-          select: {
-            firstname: true,
-            lastname: true,
-          },
-        },
-        room: {
-          select: {
-            name: true,
-            description: true,
-          },
-        },
-      },
-    });
-    res.status(200).json(chats);
+    const chatData = await prisma.chat.findMany();
+    const userData = await prisma.user.findMany();
+    let newArr = [];
+    if (userData && chatData) {
+      chatData.forEach((item) => {
+        userData.forEach((user) => {
+          if (item.authorId === user.id) {
+            newArr.push({
+              ...item,
+              firstname: user.firstname,
+              lastname: user.lastname,
+            });
+          }
+        });
+      });
+    }
+    console.log(newArr);
+    res.status(200).json(newArr);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
@@ -66,4 +67,4 @@ const postChat = async (req, res, next) => {
   }
 };
 
-module.exports = { allChat, chatById, postChat, allChatGroupByDate };
+module.exports = { allChat, chatById, postChat, reformedChatData };
