@@ -14,7 +14,7 @@ function App() {
         {sidebarToShow ? <SidebarList /> : <Sidebar />}
         <Main />
       </Container>
-      {/* <CreateChannelModal/> */}
+      <CreateChannelModal />
     </div>
   );
 }

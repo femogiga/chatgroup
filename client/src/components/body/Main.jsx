@@ -41,82 +41,6 @@ const Main = () => {
   } = useReformedData();
 
   return (
-    //   <div className='main'>
-    //     <header className='main-header'>
-    //       <p>{channelName}</p>
-    //     </header>
-    //     <main className='main-body' style={{ padding: '3rem' }}>
-    //       <section className='flow-2'>
-    //         {chatData &&
-    //           chatData
-    //             .filter((item) => item.roomId === roomId)
-    //             .map((chat, index) =>
-    //               dateFormattter(chatData[index].createdAt) !==
-    //               dateFormattter(chatData[index - 1]?.createdAt) ? (
-    //                 <>
-    //                   <Seperator chatDate={chatData[index]?.createdAt} />
-    //                   <ChatCard
-    //                     key={`chat_${chat.id}`}
-    //                     content={chat?.content}
-    //                     firstName={userData[chat?.authorId]?.firstname}
-    //                     lastName={userData[chat?.authorId]?.lastname}
-    //                     messageDate={chat?.createdAt}
-    //                   />
-    //                 </>
-    //               ) : (
-    //                 <ChatCard
-    //                   key={`chat_${chat.id}`}
-    //                   content={chat.content}
-    //                   firstName={userData[chat?.authorId]?.firstname}
-    //                   lastName={userData[chat?.authorId]?.lastname}
-    //                   messageDate={chat.createdAt}
-    //                 />
-
-    //               )
-    //             )}
-
-    //         {/* <ChatCard />
-    //         <ChatCard />
-    //         <ChatCard />
-    //         <Seperator /> */}
-    //       </section>
-
-    //       <section className='flow-2'>
-    //         {/* <ChatCard />
-    //         <ChatCard />
-    //         <ChatCard /> */}
-    //         {/* <ChatCard /> */}
-    //         <Seperator />
-    //       </section>
-
-    //       <section className='flow-2'>
-    //         {/* <ChatCard />
-    //         <ChatCard />
-    //         <ChatCard />
-    //         <ChatCard />
-    //         <Seperator /> */}
-    //       </section>
-    //       <form className='send-message-form'>
-    //         <div className='absolute-cont'>
-    //           <input type='text' placeholder='Type a message' />
-    //           <div
-    //             className='send-button'
-    //             style={{
-    //               backgroundColor: '#2F80ED',
-    //               width: '39px',
-    //               height: '39px',
-    //               borderRadius: '8px',
-    //             }}>
-    //             <IconButton sx={{ color: 'white' }}>
-    //               <SendIcon />
-    //             </IconButton>
-    //           </div>
-    //         </div>
-    //       </form>
-    //     </main>
-    //   </div>
-    // );
-
     <div className='main'>
       <header className='main-header'>
         <p>{channelName}</p>
@@ -127,7 +51,7 @@ const Main = () => {
             reformedData
               .filter((item) => item.roomId === roomId)
               .map((chat, index) =>
-                dateFormattter(chat.createdAt) <
+                dateFormattter(chat.createdAt) >
                 dateFormattter(chat[index - 1]?.createdAt) ? (
                   <>
                     <Seperator chatDate={chat?.createdAt} />
@@ -149,28 +73,13 @@ const Main = () => {
                   />
                 )
               )}
-
-          {/* <ChatCard />
-          <ChatCard />
-          <ChatCard />
-          <Seperator /> */}
         </section>
 
         <section className='flow-2'>
-          {/* <ChatCard />
-          <ChatCard />
-          <ChatCard /> */}
-          {/* <ChatCard /> */}
           <Seperator />
         </section>
 
-        <section className='flow-2'>
-          {/* <ChatCard />
-          <ChatCard />
-          <ChatCard />
-          <ChatCard />
-          <Seperator /> */}
-        </section>
+        <section className='flow-2'></section>
         <form className='send-message-form'>
           <div className='absolute-cont'>
             <input type='text' placeholder='Type a message' />
