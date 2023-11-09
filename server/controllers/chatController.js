@@ -1,6 +1,10 @@
 const { PrismaClient } = require('@prisma/client');
-
 const prisma = new PrismaClient();
+
+let io;
+// const setSocket = (socketIO) => {
+//   io = socketIO;
+// };
 
 const allChat = async (req, res, next) => {
   try {
@@ -54,16 +58,34 @@ const chatById = async (req, res, next) => {
 const postChat = async (req, res, next) => {
   try {
     const { content, authorId, roomId } = req.body;
+    console.log('body===>', req.body);
+    console.log('roomId===>', roomId);
+    console.log('authorId===>', authorId);
+    // Check if authorId and roomId are not null
+    if (!authorId || !roomId) {
+      return res
+        .status(400)
+        .json({ error: 'AuthorId and roomId cannot be null' });
+    }
+
     const message = await prisma.chat.create({
       data: {
         content: content,
-        authorId: authorId,
-        roomId: roomId,
+        // authorId: authorId,
+        // roomId: roomId,
+        author: {
+          connect: { id: parseInt(authorId) },
+        },
+        room: {
+          connect: { id: parseInt(roomId) },
+        },
       },
     });
-    res.status(201).json({ message: 'Post succesfully created', message });
+
+     res.status(201).json({ message: 'Post successfully created', message });
   } catch (err) {
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
