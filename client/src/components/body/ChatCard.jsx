@@ -1,12 +1,17 @@
 import { dateFormattter } from './../../utility/dateFormatter';
 
-const ChatCard = ({ content, firstName, lastName, messageDate }) => {
+const ChatCard = ({ content, firstName, lastName, messageDate, imgUrl }) => {
   console.log('firstname===>', firstName);
   return (
     <article className='chat-card flow-2'>
       <div className='flex gap-1'>
         <div className='photo-container flex'>
-          <img src='https://images.pexels.com/photos/262391/pexels-photo-262391.jpeg?auto=compress&cs=tinysrgb&w=1600' />
+          <img
+            src={
+              imgUrl ||
+              'https://images.pexels.com/photos/262391/pexels-photo-262391.jpeg?auto=compress&cs=tinysrgb&w=1600'
+            }
+          />
         </div>
         <div>
           <div>

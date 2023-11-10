@@ -15,7 +15,7 @@ const findById = async (req, res, next) => {
 };
 
 const createUser = async (req, res, next) => {
-  const { firstname, lastname, email, password } = req.body;
+  const { firstname, lastname, email, password, imgUrl } = req.body;
   try {
     const newUser = await prisma.user.create({
       data: {
@@ -23,6 +23,7 @@ const createUser = async (req, res, next) => {
         lastname: lastname,
         email: email,
         password: password,
+        imgUrl: imgUrl,
       },
     });
     res.status(200).json({ newUser, message: 'User created successfully' });
@@ -33,4 +34,4 @@ const createUser = async (req, res, next) => {
 };
 
 // module.exports = { allUsers, findById, createUser };
-module.exports = { allUsers, findById };
+module.exports = { allUsers, findById, createUser };

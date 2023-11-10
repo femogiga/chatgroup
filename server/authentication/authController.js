@@ -10,7 +10,7 @@ const register = async (req, res) => {
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email, password, imgUrl } = req.body;
     const userExist = await prisma.user.findUnique({
       where: {
         email: email,
@@ -28,6 +28,7 @@ const register = async (req, res) => {
         lastname: lastname,
         email: email,
         password: hashedPassword,
+        imgUrl: imgUrl,
       },
     });
     return res

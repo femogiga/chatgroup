@@ -29,6 +29,7 @@ const reformedChatData = async (req, res, next) => {
               ...item,
               firstname: user.firstname,
               lastname: user.lastname,
+              imgUrl: user.imgUrl,
             });
           }
         });
@@ -82,7 +83,7 @@ const postChat = async (req, res, next) => {
       },
     });
 
-     res.status(201).json({ message: 'Post successfully created', message });
+    res.status(201).json({ message: 'Post successfully created', message });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });

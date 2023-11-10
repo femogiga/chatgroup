@@ -97,6 +97,7 @@ const Main = () => {
                       firstName={chat?.firstname}
                       lastName={chat?.lastname}
                       messageDate={chat?.createdAt}
+                      imgUrl={chat?.imgUrl}
                     />
                   </>
                 ) : (
@@ -106,6 +107,7 @@ const Main = () => {
                     firstName={chat?.firstname}
                     lastName={chat?.lastname}
                     messageDate={chat.createdAt}
+                    imgUrl={chat?.imgUrl}
                   />
                 )
               )}
