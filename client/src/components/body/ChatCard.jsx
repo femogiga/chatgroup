@@ -1,5 +1,7 @@
-const ChatCard = ({ content, firstName, lastName, messageDate}) => {
-  console.log("firstname===>",firstName)
+import { dateFormattter } from './../../utility/dateFormatter';
+
+const ChatCard = ({ content, firstName, lastName, messageDate }) => {
+  console.log('firstname===>', firstName);
   return (
     <article className='chat-card flow-2'>
       <div className='flex gap-1'>
@@ -9,8 +11,10 @@ const ChatCard = ({ content, firstName, lastName, messageDate}) => {
         <div>
           <div>
             <div className='flex gap-1 text-light-gray align-items--center'>
-              <p className=''>{ firstName + " " + lastName}</p>
-              <p style={{ fontSize: '.75rem' }}>{ messageDate}</p>
+              <p className=''>{firstName + ' ' + lastName}</p>
+              <p style={{ fontSize: '.75rem' }}>
+                {dateFormattter(messageDate)}
+              </p>
             </div>
             <p>
               {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. sequi eum

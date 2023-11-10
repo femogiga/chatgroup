@@ -6,12 +6,8 @@ import { setAddChannelButtonStatus } from '../../features/sidebar/sidebarSlice';
 const AddChannel = () => {
   const dispatch = useDispatch();
   const handleOpenModal = (e) => {
-    // e.preventDefault()
     dispatch(setAddChannelButtonStatus(true));
   };
-  // const addChannelbuttonStatus = useSelector(
-  //   (state) => state.sidebar.addChannelbuttonStatus
-  // );
 
   return (
     <div className='sidebar-header shadow flex gap-05 align-items--center flow-1 space-between'>

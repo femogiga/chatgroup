@@ -5,12 +5,40 @@ import Seperator from './Seperator';
 import SendIcon from '@mui/icons-material/Send';
 import { useChatData, useReformedData } from '../../api/chatData';
 import { useChannelData } from '../../api/channelData';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useUserData } from './../../api/userData';
 import { dateFormattter } from './../../utility/dateFormatter';
 import { filterName, mapItem } from '../../utility/filterName';
+import { useEffect } from 'react';
+import io from 'socket.io-client';
+import { clearInput, setInputValue } from '../../features/body/mainSlice';
+import apiService from '../../utility/apiService';
+import { useQueryClient } from '@tanstack/react-query';
+import { useCreateChatMutation } from './../../api/chatData';
+
 const Main = () => {
   const roomId = useSelector((state) => state.sidebar.roomId);
+  const content = useSelector((state) => state.main.content);
+  const dispatch = useDispatch();
+  const { mutate, isLoading, error } = useCreateChatMutation();
+  // console.log('chat input===>', content);
+
+  const handleSendMessage = async () => {
+
+    try {
+      const data = {
+        content: content,
+        authorId: 1,
+        roomId: roomId,
+      };
+
+       mutate(data);
+      dispatch(clearInput({ fieldName: 'content' }));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const {
     isPending: isChatPending,
     error: chatError,
@@ -26,6 +54,7 @@ const Main = () => {
     error: userError,
     data: userData,
   } = useUserData();
+  console.log('roomId===', roomId);
 
   console.log('chat====>', chatData);
   console.log('channel====>', channelData);
@@ -40,6 +69,9 @@ const Main = () => {
     data: reformedData,
   } = useReformedData();
 
+  console.log('reformed====>', reformedData);
+
+  //
   return (
     <div className='main'>
       <header className='main-header'>
@@ -51,10 +83,14 @@ const Main = () => {
             reformedData
               .filter((item) => item.roomId === roomId)
               .map((chat, index) =>
-                dateFormattter(chat.createdAt) >
-                dateFormattter(chat[index - 1]?.createdAt) ? (
+                index > 0 &&
+                dateFormattter(chat.createdAt) <
+                  dateFormattter(chat[index - 1]?.createdAt) ? (
                   <>
-                    <Seperator chatDate={chat?.createdAt} />
+                    <Seperator
+                      chatDate={chat?.createdAt}
+                      key={`sep_${index}`}
+                    />
                     <ChatCard
                       key={`chat_${chat.id}`}
                       content={chat?.content}
@@ -65,7 +101,7 @@ const Main = () => {
                   </>
                 ) : (
                   <ChatCard
-                    key={`chat_${chat.id}`}
+                    key={`chats_${chat.id}`}
                     content={chat.content}
                     firstName={chat?.firstname}
                     lastName={chat?.lastname}
@@ -80,9 +116,25 @@ const Main = () => {
         </section>
 
         <section className='flow-2'></section>
-        <form className='send-message-form'>
+        <form
+          className='send-message-form'
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSendMessage();
+            // dispatch(clearInput({fieldName:'content'}))
+          }}>
           <div className='absolute-cont'>
-            <input type='text' placeholder='Type a message' />
+            <input
+              type='text'
+              placeholder='Type a message'
+              name='content'
+              value={content}
+              onChange={(e) =>
+                dispatch(
+                  setInputValue({ fieldName: 'content', value: e.target.value })
+                )
+              }
+            />
             <div
               className='send-button'
               style={{
@@ -91,7 +143,7 @@ const Main = () => {
                 height: '39px',
                 borderRadius: '8px',
               }}>
-              <IconButton sx={{ color: 'white' }}>
+              <IconButton type='submit' sx={{ color: 'white' }}>
                 <SendIcon />
               </IconButton>
             </div>

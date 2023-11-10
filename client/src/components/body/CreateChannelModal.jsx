@@ -7,21 +7,21 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAddChannelButtonStatus } from '../../features/sidebar/sidebarSlice';
+import { clearInput, setInputValue } from '../../features/body/mainSlice';
+import { useCreateChannelMutation } from '../../api/channelData';
 
 function CreateChannelModal() {
   const dispatch = useDispatch();
   const addChannelButtonStatus = useSelector(
     (state) => state.sidebar.addChannelButtonStatus
   );
-  // const [open, setOpen] = React.useState(false);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  const channelName = useSelector((state) => state.main.channelName);
+  const channelDescription = useSelector(
+    (state) => state.main.channelDescription
+  );
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  const { isLoading, isSuccess, error, mutate } = useCreateChannelMutation();
 
   const handleOpenModal = (e) => {
     // e.preventDefault()
@@ -32,6 +32,23 @@ function CreateChannelModal() {
     // e.preventDefault()
     dispatch(setAddChannelButtonStatus(false));
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (!channelName || channelDescription) {
+        return;
+      }
+      const data = { name: channelName, description: channelDescription };
+      mutate(data);
+      dispatch(clearInput({ fieldName: 'channelName' }));
+      dispatch(clearInput({ fieldName: 'channelDescription' }));
+      dispatch(setAddChannelButtonStatus(false));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  console.log('channel name=====>', channelName);
+  console.log('channel description=====>', channelDescription);
 
   return (
     <form style={{}}>
@@ -46,6 +63,16 @@ function CreateChannelModal() {
               label='Channel Name'
               type='email'
               fullWidth
+              name='channelName'
+              value={channelName}
+              onChange={(e) =>
+                dispatch(
+                  setInputValue({
+                    fieldName: 'channelName',
+                    value: e.target.value,
+                  })
+                )
+              }
               // variant='standard'
               sx={{
                 marginBlock: '1rem',
@@ -72,6 +99,16 @@ function CreateChannelModal() {
               // placeholder='Placeholder'
               multiline
               fullWidth
+              name='channelDescription'
+              value={channelDescription}
+              onChange={(e) => {
+                dispatch(
+                  setInputValue({
+                    fieldName: 'channelDescription',
+                    value: e.target.value,
+                  })
+                );
+              }}
               sx={{
                 marginBlock: '1rem',
                 backgroundColor: '#3C393F',
@@ -92,7 +129,7 @@ function CreateChannelModal() {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={'handleClose'} variant='contained'>
+            <Button type='submit' variant='contained' onClick={handleSubmit}>
               Save
             </Button>
           </DialogActions>
