@@ -1,9 +1,24 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import FilterHdrOutlinedIcon from '@mui/icons-material/FilterHdrOutlined';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoginModalStatus } from '../../features/sidebar/sidebarSlice';
 
 const Account = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const loginStatus = useSelector((state) => state.sidebar.loginlogoutstatus);
+const loginModalStatus  = useSelector((state)=>state.sidebar.loginModalStatus)
+  const handleLoginClick = () => {
+    if (loginStatus) {
+      // navigate('/login')
+      dispatch(setLoginModalStatus(true))
+      return
+    }
+
+
+  }
   return (
     <div className='account' style={{ backgroundColor: '#252329' }}>
       <div className='flow-1' style={{ color: 'white' }}>
@@ -21,9 +36,9 @@ const Account = () => {
       </div>
       <hr />
       <div className='account-modal logout'>
-        <Link className='flex gap-1'>
+        <Link onClick={ handleLoginClick} className='flex gap-1'>
           <LogoutIcon sx={{ color: '#EB5757' }} />
-          <p>Logout</p>
+          <p>{loginStatus ? 'Login' : 'Logout'}</p>
         </Link>
       </div>
     </div>

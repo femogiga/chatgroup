@@ -58,13 +58,15 @@ const login = async (req, res) => {
       return res.status(401).json({ errors: 'Invalid credentials' });
     }
     const passwordMatch = bcrypt.compareSync(password, user.password);
-    if (passwordMatch) {
+    if (!passwordMatch) {
       return res.status(401).json({ errors: 'Invalid credentials' });
     }
     const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, {
       expiresIn: '1hr',
     });
+    console.log(token);
     return res.json({ token });
+
   } catch (err) {
     return res.status(500).json({ errors: 'Internal server error' });
   }

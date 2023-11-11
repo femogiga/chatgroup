@@ -6,6 +6,7 @@ require('dotenv').config();
 const authMiddleware = async (req, res, next) => {
   const token = req.header('Authorization');
   if (!token) {
+    console.log(res)
     return res.status(401).json({ error: 'No token , authorization denied' });
   }
   try {
@@ -22,7 +23,7 @@ const authMiddleware = async (req, res, next) => {
     req.user = user;
     next();
   } catch (err) {
-      console.error(err);
+    console.error(err);
     return res.status(500).json({ error: 'Server error' });
   }
 };

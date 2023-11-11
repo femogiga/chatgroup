@@ -4,6 +4,8 @@ export const sidebarSlice = createSlice({
   name: 'sidebar',
   initialState: {
     accountModalVisible: false,
+    loginlogoutstatus: true,
+    loginModalStatus : false,
     sidebarToShow: false,
     roomId: 1,
     addChannelButtonStatus: false,
@@ -21,6 +23,12 @@ export const sidebarSlice = createSlice({
     setAddChannelButtonStatus: (state, action) => {
       state.addChannelButtonStatus = action.payload;
     },
+    setLoginLogoutStatus: (state, action) => {
+      state.loginlogoutstatus = action.payload
+    },
+    setLoginModalStatus: (state,action) => {
+      state.loginModalStatus = action.payload
+    }
   },
 });
 
@@ -29,6 +37,8 @@ export const {
   setSidebarToShow,
   setRoomId,
   setAddChannelButtonStatus,
+  setLoginLogoutStatus,
+  setLoginModalStatus
 } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

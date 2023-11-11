@@ -6,6 +6,8 @@ const mainSlice = createSlice({
     content: '',
     channelName: '',
     channelDescription: '',
+    email: '',
+    password:''
   },
   reducers: {
     setInputValue: (state, action) => {

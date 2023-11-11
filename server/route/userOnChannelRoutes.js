@@ -6,8 +6,8 @@ const {
 
 const router = require('express').Router();
 
-router.post('/findorcreate', findOrAddUserOnChannel);
-router.post('/', addUserToChannel);
+router.post('/', findOrAddUserOnChannel);
+// router.post('/', addUserToChannel);
 router.get('/:id', getUsersInChannel);
 
 module.exports = router;

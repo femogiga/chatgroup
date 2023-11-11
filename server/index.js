@@ -27,7 +27,9 @@ app.use('/users', userRoute);
 app.use('/chats', chatRoute);
 app.use('/channels', channelRoute);
 app.use('/subscriptions', userOnChannelRoute);
-app.use('/auth', authRoute);
+// app.use('/auth',authMiddleware, authRoute);
+app.use('/auth',  authRoute);
+
 
 app.get('/', (req, res) => {
   res.send('Welcome to my application');
