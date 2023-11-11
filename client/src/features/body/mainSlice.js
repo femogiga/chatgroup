@@ -7,7 +7,8 @@ const mainSlice = createSlice({
     channelName: '',
     channelDescription: '',
     email: '',
-    password:''
+    password: '',
+    authenticatedState: false,
   },
   reducers: {
     setInputValue: (state, action) => {
@@ -18,8 +19,12 @@ const mainSlice = createSlice({
       const { fieldName } = action.payload;
       state[fieldName] = '';
     },
+    setAuthenticatedState: (state, action) => {
+      state.authenticatedState = action.payload;
+    },
   },
 });
 
-export const { setInputValue, clearInput } = mainSlice.actions;
+export const { setInputValue, clearInput, setAuthenticatedState } =
+  mainSlice.actions;
 export default mainSlice.reducer;

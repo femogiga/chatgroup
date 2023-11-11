@@ -7,6 +7,7 @@ import CreateChannelModal from './components/body/CreateChannelModal';
 import Login from './components/sidebar/Login';
 import SidebarFooter from './components/sidebar/SidebarFooter';
 import LoginModal from './components/body/LoginModal';
+import LoginPage from './components/body/LoginPage';
 
 function App() {
   const sidebarToShow = useSelector((state) => state.sidebar.sidebarToShow);
@@ -23,10 +24,13 @@ function App() {
     <Container>
       {sidebarToShow ? <SidebarList /> : <Sidebar />}
 
-
       <Main />
       <CreateChannelModal />
-      <LoginModal/>
+      <LoginModal />
+      {/* <>
+
+        <LoginPage />
+      </> */}
     </Container>
   );
 }

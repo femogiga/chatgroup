@@ -26,9 +26,11 @@ const Main = () => {
   const handleSendMessage = async () => {
 
     try {
+      const user = localStorage.getItem('userData')
+      const parsedUser = JSON.parse(user)
       const data = {
         content: content,
-        authorId: 1,
+        authorId: parsedUser?.id,
         roomId: roomId,
       };
 
@@ -61,7 +63,7 @@ const Main = () => {
   console.log('userData====>', userData);
   const channelName = isChannelPending
     ? 'Pending'
-    : channelData[roomId - 1].name.toUpperCase();
+    : channelData[roomId - 1]?.name.toUpperCase();
 
   const {
     isPending: isReformedDataPending,

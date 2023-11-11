@@ -3,19 +3,28 @@ import { Link } from 'react-router-dom';
 import Account from './Account';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAccountModalVisible } from '../../features/sidebar/sidebarSlice';
+import { useEffect, useState } from 'react';
 
 const Login = () => {
+  const[userData,setUserData] = useState(null)
   const accountModalVisible = useSelector(
     (state) => state.sidebar.accountModalVisible
+  );
+
+  const authenticatedState = useSelector(
+    (state) => state.main.authenticatedState
   );
   const dispatch = useDispatch();
   const handleAccountClick = () => {
     dispatch(setAccountModalVisible());
   };
+  useEffect(() => {
+
+  },[authenticatedState])
 
   const dataFromLocalStorage = localStorage.getItem('userData');
   // console.log('datafromstorage===>',dataFromLocalStorage.userData)
-   const parsedData = JSON.parse(dataFromLocalStorage);
+  const parsedData = JSON.parse(dataFromLocalStorage);
   return (
     <div className='' style={{ height: '100%' }}>
       <Link onClick={handleAccountClick}>

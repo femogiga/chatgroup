@@ -7,31 +7,47 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  setAccountModalVisible,
   setAddChannelButtonStatus,
   setLoginLogoutStatus,
   setLoginModalStatus,
 } from '../../features/sidebar/sidebarSlice';
-import { clearInput, setInputValue } from '../../features/body/mainSlice';
+import {
+  clearInput,
+  setAuthenticatedState,
+  setInputValue,
+} from '../../features/body/mainSlice';
 import { useCreateChannelMutation } from '../../api/channelData';
 import { useLoginMutation } from '../../api/userData';
+import { useNavigate } from 'react-router-dom';
 
 function LoginModal() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginModalStatus = useSelector(
     (state) => state.sidebar.loginModalStatus
+  );
+  const authenticatedState = useSelector(
+    (state) => state.main.authenticatedState
   );
   const email = useSelector((state) => state.main.email);
   const password = useSelector((state) => state.main.password);
   const { isLoading, isSuccess, error, mutate } = useLoginMutation();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const data = { email: email, password: password };
-    const response = mutate(data);
+      const response = mutate(data);
+       setAuthenticatedState(true);
     console.log(response);
+    dispatch(setLoginModalStatus(false));
+    dispatch(setAccountModalVisible(false));
+
+     
   };
 
   const handleOpenModal = (e) => {
     // e.preventDefault()
+
     dispatch(setLoginModalStatus(true));
   };
 
