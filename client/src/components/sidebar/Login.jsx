@@ -13,8 +13,8 @@ const Login = () => {
     dispatch(setAccountModalVisible());
   };
   return (
-    <div>
-      <Link onClick={handleAccountClick}>
+    <div className='' style={{ height: '100%' }}>
+      <Link onClick={handleAccountClick} >
         <article
           className='login flex  space-between '
           style={{ backgroundColor: '#0B090C', color: 'white' }}>

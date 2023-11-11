@@ -118,8 +118,43 @@ const Main = () => {
         </section>
 
         <section className='flow-2'></section>
+        {/* <form
+          className='main-footer send-message-form'
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSendMessage();
+            // dispatch(clearInput({fieldName:'content'}))
+          }}>
+          <div className='absolute-cont'>
+            <input
+              type='text'
+              placeholder='Type a message'
+              name='content'
+              value={content}
+              onChange={(e) =>
+                dispatch(
+                  setInputValue({ fieldName: 'content', value: e.target.value })
+                )
+              }
+            />
+            <div
+              className='send-button'
+              style={{
+                backgroundColor: '#2F80ED',
+                width: '39px',
+                height: '39px',
+                borderRadius: '8px',
+              }}>
+              <IconButton type='submit' sx={{ color: 'white' }}>
+                <SendIcon />
+              </IconButton>
+            </div>
+          </div>
+        </form> */}
+      </main>
+      <footer>
         <form
-          className='send-message-form'
+          className='main-footer send-message-form'
           onSubmit={(e) => {
             e.preventDefault();
             handleSendMessage();
@@ -151,7 +186,7 @@ const Main = () => {
             </div>
           </div>
         </form>
-      </main>
+      </footer>
     </div>
   );
 };

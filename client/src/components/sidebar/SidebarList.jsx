@@ -13,7 +13,7 @@ const SidebarList = () => {
 
   console.log('data ====>', data);
   return (
-    <aside className='sidebar' style={{ paddingInline: '1rem' }}>
+    <aside className='sidebar' style={{ paddingInline: '0rem' }}>
       <AddChannel />
 
       <div className='sidebar-body'>
@@ -36,7 +36,7 @@ const SidebarList = () => {
           </div>
         </article>
       </div>
-      <footer>
+      <footer className='sidebar-footer'>
         <Login />
       </footer>
     </aside>

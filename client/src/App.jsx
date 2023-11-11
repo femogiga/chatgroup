@@ -4,19 +4,30 @@ import Main from './components/body/Main';
 import Sidebar from './components/sidebar/Sidebar';
 import SidebarList from './components/sidebar/SidebarList';
 import CreateChannelModal from './components/body/CreateChannelModal';
+import Login from './components/sidebar/Login';
+import SidebarFooter from './components/sidebar/SidebarFooter';
 
 function App() {
   const sidebarToShow = useSelector((state) => state.sidebar.sidebarToShow);
 
   return (
-    <div>
-      <Container>
-        {sidebarToShow ? <SidebarList /> : <Sidebar />}
-        <Main />
-      </Container>
+    // <div>
+    //   <Container>
+    //     {sidebarToShow ? <SidebarList /> : <Sidebar />}
+    //     <Main />
+    //   </Container>
+    //   <CreateChannelModal />
+    // </div>
+
+    <Container>
+      {sidebarToShow ? <SidebarList /> : <Sidebar />}
+
+
+      <Main />
       <CreateChannelModal />
-    </div>
+    </Container>
   );
 }
 
-export default App;
+
+export default App

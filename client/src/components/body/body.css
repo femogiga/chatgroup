@@ -15,10 +15,13 @@ hr {
 
 /* *****************************************Form component to send Message*************************************************** */
 .send-message-form {
-    position: sticky;
+    /* position: sticky; */
     z-index: 3;
     width: 100%;
     bottom: 0;
+    /* grid-row:3;
+    background-color:blue; */
+
 }
 
 .send-message-form input[type="text"] {
@@ -36,6 +39,7 @@ hr {
 
 .absolute-cont {
     position: relative;
+    /* grid-row:3; */
 }
 
 .send-button {

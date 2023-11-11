@@ -6,16 +6,16 @@ import { Link } from 'react-router-dom';
 const Account = () => {
   return (
     <div className='account' style={{ backgroundColor: '#252329' }}>
-      <div className='flow-1'>
+      <div className='flow-1' style={{ color: 'white' }}>
         <Link className='flex gap-1 account-modal'>
           <AccountCircleIcon sx={{ color: 'white' }} />
           <p>My Profile</p>
         </Link>
       </div>
 
-      <div className='flow-1 account-modal'>
+      <div className='flow-1 account-modal' style={{ color: 'white' }}>
         <Link className='flex gap-1'>
-          <FilterHdrOutlinedIcon sx={{ color: 'white' }} />
+          <FilterHdrOutlinedIcon />
           <p>Tweeter</p>
         </Link>
       </div>

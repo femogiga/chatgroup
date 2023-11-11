@@ -15,8 +15,11 @@ const Sidebar = () => {
   console.log('users', data);
 
   return (
-    <aside className='sidebar' style={{ paddingInline: '1rem' }}>
-      <AllChannel />
+    <aside className='sidebar ' style={{ paddingInline: '0rem' }}>
+      <div className='sidebar-header'>
+        <AllChannel />
+      </div>
+
       <div className='sidebar-body'>
         <ChannelHeader />
         {/* <ChannelListHeader/> */}
@@ -29,6 +32,7 @@ const Sidebar = () => {
                   key={`person_${person.user.id}`}
                   firstName={person?.user?.firstname}
                   lastName={person?.user?.lastname}
+                  imgUrl={person?.user.imgUrl}
                 />
               ))}
             {/* <MemberCard />

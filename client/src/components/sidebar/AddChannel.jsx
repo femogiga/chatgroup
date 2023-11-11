@@ -10,7 +10,7 @@ const AddChannel = () => {
   };
 
   return (
-    <div className='sidebar-header shadow flex gap-05 align-items--center flow-1 space-between'>
+    <div className='sidebar-header shadow flex gap-05 align-items--center flow-1 space-between' style={{paddingInline:'1rem',marginTop:'1rem'}}>
       <h3>Channel</h3>
       <IconButton
         sx={{ backgroundColor: '#252329' }}

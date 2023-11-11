@@ -12,12 +12,12 @@ const dispatch = useDispatch()
     dispatch(setSidebarToShow(true))
   }
 
-  
+
   return (
-    <div className='channel-nav'>
+    <div className='channel-nav flex align-items--center' style={{paddingTop:'1rem'}} >
       <Link
         onClick={handleGotoChannelList}
-        className='flex gap-05 align-items--center  flow-1'>
+        className='flex gap-05 align-items--center  flow-1' >
         <NavigateBeforeIcon style={{ fontSize: '2rem' }} />
         <h3>All channels</h3>
       </Link>
