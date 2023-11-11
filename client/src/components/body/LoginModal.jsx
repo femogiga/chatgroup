@@ -41,8 +41,10 @@ function LoginModal() {
     console.log(response);
     dispatch(setLoginModalStatus(false));
     dispatch(setAccountModalVisible(false));
+   setTimeout(function () {
+     location.reload();
+   }, 1000);
 
-     
   };
 
   const handleOpenModal = (e) => {
