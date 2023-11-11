@@ -14,7 +14,7 @@ const dispatch = useDispatch()
 
 
   return (
-    <div className='channel-nav flex align-items--center' style={{paddingTop:'1rem'}} >
+    <div className='channel-nav flex align-items--center flow-1' style={{paddingTop:'1rem'}} >
       <Link
         onClick={handleGotoChannelList}
         className='flex gap-05 align-items--center  flow-1' >

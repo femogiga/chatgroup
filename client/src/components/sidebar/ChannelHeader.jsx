@@ -8,7 +8,7 @@ const ChannelHeader = () => {
   const channelName = isPending ? 'loading' : data?.name.toUpperCase();
   const channelDescription = isPending ? 'loading' : data?.description;
   return (
-    <article>
+    <article style={{ marginTop: '1rem' }}>
       <p className='flow-1 bold-700'>{channelName}</p>
       <p className='flow-1'>{channelDescription}</p>
     </article>

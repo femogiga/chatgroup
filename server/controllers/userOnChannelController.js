@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 const addUserToChannel = async (req, res, next) => {
   try {
     const { userId, channelId } = req.body;
+
     const result = await prisma.usersOnChannels.create({
       data: {
         userId: parseInt(userId),
@@ -19,7 +20,7 @@ const addUserToChannel = async (req, res, next) => {
 
 const getUsersInChannel = async (req, res, next) => {
   try {
-    const  channelId  = req.params.id;
+    const channelId = req.params.id;
     const usersInChannel = await prisma.usersOnChannels.findMany({
       where: {
         channelId: parseInt(channelId),
@@ -35,4 +36,35 @@ const getUsersInChannel = async (req, res, next) => {
     res.status(500).json(err);
   }
 };
-module.exports = { addUserToChannel, getUsersInChannel };
+
+const findOrAddUserOnChannel = async (req, res, next) => {
+  try {
+    const { userId, channelId } = req.body;
+
+    const result = await prisma.usersOnChannels.upsert({
+      where: {
+        userId: parseInt(userId),
+        channelId: parseInt(channelId),
+        userId_channelId: {
+          userId: parseInt(userId),
+          channelId: parseInt(channelId),
+        },
+      },
+      update: {},
+      create: {
+        userId: parseInt(userId),
+        channelId: parseInt(channelId),
+      },
+    });
+
+    res.status(201).json({ result, message: 'user added successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+};
+module.exports = {
+  addUserToChannel,
+  getUsersInChannel,
+  findOrAddUserOnChannel,
+};
