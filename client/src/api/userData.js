@@ -29,6 +29,7 @@ export const useLoginMutation = () => {
     onSuccess: (data) => {
       // queryClient.invalidateQueries({ queryKey: ['useronchannel'] });
       localStorage.setItem('token', data.token);
+      localStorage.setItem('userData',JSON.stringify(data.user))
     },
   });
 

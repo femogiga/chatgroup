@@ -12,17 +12,26 @@ const Login = () => {
   const handleAccountClick = () => {
     dispatch(setAccountModalVisible());
   };
+
+  const dataFromLocalStorage = localStorage.getItem('userData');
+  // console.log('datafromstorage===>',dataFromLocalStorage.userData)
+   const parsedData = JSON.parse(dataFromLocalStorage);
   return (
     <div className='' style={{ height: '100%' }}>
-      <Link onClick={handleAccountClick} >
+      <Link onClick={handleAccountClick}>
         <article
           className='login flex  space-between '
           style={{ backgroundColor: '#0B090C', color: 'white' }}>
           <div className='flex gap-05 align-items--center flow-1'>
             <div className='photo-container flex align-items--center'>
-              <img src='https://images.pexels.com/photos/1181424/pexels-photo-1181424.jpeg?auto=compress&cs=tinysrgb&w=1600' />
+              <img
+                src={
+                  parsedData?.imgUrl ||
+                  'https://images.pexels.com/photos/1181424/pexels-photo-1181424.jpeg?auto=compress&cs=tinysrgb&w=1600'
+                }
+              />
             </div>
-            <p className='bold-500'>Xanthe Neal</p>
+            <p className='bold-500'>{`${parsedData?.firstname}  ${parsedData?.lastname} `}</p>
           </div>
           <p style={{ alignSelf: 'center' }}>
             <KeyboardArrowDownSharpIcon />
