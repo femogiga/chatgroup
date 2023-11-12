@@ -12,6 +12,9 @@ const allChannels = async (req, res, next) => {
 
 const channelById = async (req, res, next) => {
   try {
+     if (!req.user || !req.user.id) {
+       return res.status(401).json({ error: 'User not authenticated' });
+     }
     const room = await prisma.channel.findUnique({
       where: {
         id: parseInt(req.params.id),

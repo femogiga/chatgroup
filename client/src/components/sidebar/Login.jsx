@@ -4,9 +4,10 @@ import Account from './Account';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAccountModalVisible } from '../../features/sidebar/sidebarSlice';
 import { useEffect, useState } from 'react';
+import { useUserDataById } from '../../api/userData';
 
 const Login = () => {
-  const[userData,setUserData] = useState(null)
+  const [userData, setUserData] = useState(null);
   const accountModalVisible = useSelector(
     (state) => state.sidebar.accountModalVisible
   );
@@ -18,13 +19,12 @@ const Login = () => {
   const handleAccountClick = () => {
     dispatch(setAccountModalVisible());
   };
-  useEffect(() => {
-
-  },[authenticatedState])
+  useEffect(() => {}, [authenticatedState]);
 
   const dataFromLocalStorage = localStorage.getItem('userData');
   // console.log('datafromstorage===>',dataFromLocalStorage.userData)
   const parsedData = JSON.parse(dataFromLocalStorage);
+  // const { isLoading, error, data } = useUserDataById(parsedData?.id);
   return (
     <div className='' style={{ height: '100%' }}>
       <Link onClick={handleAccountClick}>

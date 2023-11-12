@@ -13,8 +13,6 @@ const { postChat } = require('./controllers/chatController');
 const app = express();
 app.use(express.json());
 
-
-
 app.use(morgan('common'));
 app.use(cors());
 
@@ -23,18 +21,17 @@ app.use(cors());
 // app.use('/channels', authMiddleware, channelRoute);
 // app.use('/subscribe', authMiddleware, userOnChannelRoute);
 // app.use('/auth', authRoute);
-app.use('/users', userRoute);
-app.use('/chats', chatRoute);
-app.use('/channels', channelRoute);
-app.use('/subscriptions', userOnChannelRoute);
+app.use('/users',authMiddleware, userRoute);
+app.use('/chats', authMiddleware,chatRoute);
+app.use('/channels', authMiddleware, channelRoute);
+app.use('/subscriptions',authMiddleware, userOnChannelRoute);
 // app.use('/auth',authMiddleware, authRoute);
-app.use('/auth',  authRoute);
-
+app.use('/auth', authRoute);
 
 app.get('/', (req, res) => {
   res.send('Welcome to my application');
 });
-const port =  process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   console.log('listening on port ' + port);

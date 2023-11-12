@@ -1,5 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import apiService from '../utility/apiService';
+import { useDispatch } from 'react-redux';
+import { setAuthData } from '../features/body/mainSlice';
+
 
 export const useUserData = () => {
   const { isPending, error, data } = useQuery({
@@ -19,6 +22,7 @@ export const useUserDataById = (id) => {
 
 export const useLoginMutation = () => {
   const queryClient = useQueryClient();
+  const dispatch = useDispatch()
 
   const { isLoading, isSuccess, error, mutate } = useMutation({
     mutationFn: async (data) => {
@@ -29,7 +33,9 @@ export const useLoginMutation = () => {
     onSuccess: (data) => {
       // queryClient.invalidateQueries({ queryKey: ['useronchannel'] });
       localStorage.setItem('token', data.token);
-      localStorage.setItem('userData',JSON.stringify(data.user))
+      localStorage.setItem('userData', JSON.stringify(data.user))
+      dispatch(setAuthData(data.user))
+
     },
   });
 

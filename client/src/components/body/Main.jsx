@@ -15,6 +15,7 @@ import { clearInput, setInputValue } from '../../features/body/mainSlice';
 import apiService from '../../utility/apiService';
 import { useQueryClient } from '@tanstack/react-query';
 import { useCreateChatMutation } from './../../api/chatData';
+import { setLoginModalStatus } from '../../features/sidebar/sidebarSlice';
 
 const Main = () => {
   const roomId = useSelector((state) => state.sidebar.roomId);
@@ -22,19 +23,30 @@ const Main = () => {
   const dispatch = useDispatch();
   const { mutate, isLoading, error } = useCreateChatMutation();
   // console.log('chat input===>', content);
+  const user = localStorage.getItem('userData');
+  const isAuthenticated = user !== null;
+  if (!isAuthenticated) {
+    dispatch(setLoginModalStatus(true));
+    return null;
+  }
+  //else
+  //{
+  //   dispatch(setLoginModalStatus(false));
+  // }
 
   const handleSendMessage = async () => {
-
     try {
-      const user = localStorage.getItem('userData')
-      const parsedUser = JSON.parse(user)
-      const data = {
+      const parsedUser = await JSON.parse(user);
+      const dataToSend = {
         content: content,
         authorId: parsedUser?.id,
         roomId: roomId,
       };
 
-       mutate(data);
+      const result = await mutate(dataToSend);
+      if (result.error) {
+        return;
+      }
       dispatch(clearInput({ fieldName: 'content' }));
     } catch (err) {
       console.error(err);
@@ -63,7 +75,7 @@ const Main = () => {
   console.log('userData====>', userData);
   const channelName = isChannelPending
     ? 'Pending'
-    : channelData[roomId - 1]?.name.toUpperCase();
+    : channelData && channelData[roomId - 1]?.name.toUpperCase();
 
   const {
     isPending: isReformedDataPending,

@@ -6,12 +6,19 @@ require('dotenv').config();
 const authMiddleware = async (req, res, next) => {
   const token = req.header('Authorization');
   if (!token) {
-    console.log(res)
+    console.log(res);
     return res.status(401).json({ error: 'No token , authorization denied' });
   }
   try {
-    const decoded = jwt.decode(token, process.env.SECRET_KEY);
+    // Check if the token is in the correct format
+    const tokenParts = token.split(' ');
+
+    if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
+      return res.status(401).json({ error: 'Invalid token format' });
+    }
+    const decoded = jwt.decode(tokenParts[1], process.env.SECRET_KEY);
     const id = parseInt(decoded.id);
+    console.log('id======>', decoded);
     const user = await prisma.user.findUnique({
       where: {
         id,

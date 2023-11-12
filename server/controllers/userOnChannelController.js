@@ -30,7 +30,7 @@ const getUsersInChannel = async (req, res, next) => {
       },
     });
 
-    console.log('Users in Channel:', usersInChannel);
+    // console.log('Users in Channel:', usersInChannel);
     res.status(200).json(usersInChannel);
   } catch (err) {
     res.status(500).json(err);

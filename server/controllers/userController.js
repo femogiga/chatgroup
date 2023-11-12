@@ -8,11 +8,18 @@ const allUsers = async (req, res, next) => {
 };
 
 const findById = async (req, res, next) => {
-  const result = await prisma.user.findUnique({
-    where: { id: req.params.id },
-  });
-  res.status(200).json(result);
-};
+  try {
+    const result = await prisma.user.findUnique({
+      where: {
+        id: parseInt(req.params.id)
+      },
+    });
+    res.status(200).json(result);
+  }
+  catch (err) {
+    res.status(500).json({ err: err });
+  }
+}
 
 const createUser = async (req, res, next) => {
   const { firstname, lastname, email, password, imgUrl } = req.body;
@@ -34,4 +41,4 @@ const createUser = async (req, res, next) => {
 };
 
 // module.exports = { allUsers, findById, createUser };
-module.exports = { allUsers, findById, createUser };
+module.exports = { allUsers, findById, createUser }

@@ -36,15 +36,14 @@ function LoginModal() {
 
   const handleLogin = async () => {
     const data = { email: email, password: password };
-      const response = mutate(data);
-       setAuthenticatedState(true);
+    const response = mutate(data);
+    dispatch(setAuthenticatedState(true));
     console.log(response);
     dispatch(setLoginModalStatus(false));
     dispatch(setAccountModalVisible(false));
-   setTimeout(function () {
-     location.reload();
-   }, 1000);
-
+    setTimeout(function () {
+      location.reload();
+    }, 1000);
   };
 
   const handleOpenModal = (e) => {

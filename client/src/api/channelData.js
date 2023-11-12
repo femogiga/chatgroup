@@ -6,6 +6,11 @@ export const useChannelData = () => {
     queryKey: ['channelData'],
     queryFn: () => apiService.get('/channels').then((res) => res.data),
   });
+  if (error?.response?.status === 401) {
+    console.error('User not authenticated. Opening login modal...');
+   
+    return { isPending: false, error, data: null };
+  }
   return { isPending, error, data };
 };
 

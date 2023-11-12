@@ -9,6 +9,7 @@ const mainSlice = createSlice({
     email: '',
     password: '',
     authenticatedState: false,
+    authData:null
   },
   reducers: {
     setInputValue: (state, action) => {
@@ -22,9 +23,12 @@ const mainSlice = createSlice({
     setAuthenticatedState: (state, action) => {
       state.authenticatedState = action.payload;
     },
+    setAuthData: (state, action) => {
+      state.authData = action.payload;
+    }
   },
 });
 
-export const { setInputValue, clearInput, setAuthenticatedState } =
+export const { setInputValue, clearInput, setAuthenticatedState, setAuthData } =
   mainSlice.actions;
 export default mainSlice.reducer;
