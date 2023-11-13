@@ -6,19 +6,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLoginModalStatus } from '../../features/sidebar/sidebarSlice';
 
 const Account = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.sidebar.loginlogoutstatus);
-const loginModalStatus  = useSelector((state)=>state.sidebar.loginModalStatus)
+  const loginModalStatus = useSelector(
+    (state) => state.sidebar.loginModalStatus
+  );
+  const parsedData = localStorage.getItem('userData');
   const handleLoginClick = () => {
     if (loginStatus) {
       // navigate('/login')
-      dispatch(setLoginModalStatus(true))
-      return
+      dispatch(setLoginModalStatus(true));
+      return;
     }
+  };
 
-
-  }
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    localStorage.removeItem('userData');
+    localStorage.removeItem('token');
+    location.reload();
+  };
   return (
     <div className='account' style={{ backgroundColor: '#252329' }}>
       <div className='flow-1' style={{ color: 'white' }}>
@@ -36,9 +44,9 @@ const loginModalStatus  = useSelector((state)=>state.sidebar.loginModalStatus)
       </div>
       <hr />
       <div className='account-modal logout'>
-        <Link onClick={ handleLoginClick} className='flex gap-1'>
+        <Link onClick={handleLogout} className='flex gap-1'>
           <LogoutIcon sx={{ color: '#EB5757' }} />
-          <p>{loginStatus ? 'Login' : 'Logout'}</p>
+          <p>{parsedData ? 'Logout' : 'Login'}</p>
         </Link>
       </div>
     </div>

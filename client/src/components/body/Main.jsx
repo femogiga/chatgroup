@@ -8,7 +8,7 @@ import { useChannelData } from '../../api/channelData';
 import { useDispatch, useSelector } from 'react-redux';
 import { useUserData } from './../../api/userData';
 import { dateFormattter } from './../../utility/dateFormatter';
-import { useEffect } from 'react';
+import { useEffect, React } from 'react';
 import io from 'socket.io-client';
 import { clearInput, setInputValue } from '../../features/body/mainSlice';
 import apiService from '../../utility/apiService';
@@ -97,25 +97,25 @@ const Main = () => {
               .filter((item) => item.roomId === roomId)
               .map((chat, index) =>
                 index > 0 &&
-                dateFormattter(chat.createdAt) <
+                dateFormattter(chat?.createdAt) <
                   dateFormattter(chat[index - 1]?.createdAt) ? (
-                  <>
+                  <div key={`cont-${chat?.id}`}>
                     <Seperator
                       chatDate={chat?.createdAt}
                       key={`sep_${index}`}
                     />
                     <ChatCard
-                      key={`chat_${chat.id}`}
+                      key={`chat_${chat?.id}`}
                       content={chat?.content}
                       firstName={chat?.firstname}
                       lastName={chat?.lastname}
                       messageDate={chat?.createdAt}
                       imgUrl={chat?.imgUrl}
                     />
-                  </>
+                  </div>
                 ) : (
                   <ChatCard
-                    key={`chats_${chat.id}`}
+                    key={`chats_${chat?.id}`}
                     content={chat.content}
                     firstName={chat?.firstname}
                     lastName={chat?.lastname}
