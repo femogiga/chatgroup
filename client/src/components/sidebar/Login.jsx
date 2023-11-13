@@ -1,4 +1,6 @@
 import KeyboardArrowDownSharpIcon from '@mui/icons-material/KeyboardArrowDownSharp';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import person from '../../assets/person.png';
 import { Link } from 'react-router-dom';
 import Account from './Account';
 import { useSelector, useDispatch } from 'react-redux';
@@ -36,14 +38,23 @@ const Login = () => {
               <img
                 src={
                   parsedData?.imgUrl ||
+                  person ||
                   'https://images.pexels.com/photos/1181424/pexels-photo-1181424.jpeg?auto=compress&cs=tinysrgb&w=1600'
                 }
+                alt='person passport photo'
               />
             </div>
-            <p className='bold-500'>{`${parsedData?.firstname}  ${parsedData?.lastname} `}</p>
+            <p className='bold-500'>
+              {parsedData &&
+                `${parsedData?.firstname}  ${parsedData?.lastname} `}
+            </p>
           </div>
           <p style={{ alignSelf: 'center' }}>
-            <KeyboardArrowDownSharpIcon />
+            {parsedData ? (
+              <KeyboardArrowDownSharpIcon />
+            ) : (
+              <KeyboardArrowUpIcon />
+            )}
           </p>
         </article>
       </Link>
