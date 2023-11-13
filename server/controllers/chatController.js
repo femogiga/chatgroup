@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-let io;
+
 // const setSocket = (socketIO) => {
 //   io = socketIO;
 // };

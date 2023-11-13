@@ -8,7 +8,6 @@ import { useChannelData } from '../../api/channelData';
 import { useDispatch, useSelector } from 'react-redux';
 import { useUserData } from './../../api/userData';
 import { dateFormattter } from './../../utility/dateFormatter';
-import { filterName, mapItem } from '../../utility/filterName';
 import { useEffect } from 'react';
 import io from 'socket.io-client';
 import { clearInput, setInputValue } from '../../features/body/mainSlice';
