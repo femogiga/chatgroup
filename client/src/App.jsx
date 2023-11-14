@@ -7,11 +7,12 @@ import CreateChannelModal from './components/body/CreateChannelModal';
 import Login from './components/sidebar/Login';
 import SidebarFooter from './components/sidebar/SidebarFooter';
 import LoginModal from './components/body/LoginModal';
-import LoginPage from './components/body/LoginPage';
+import ProfileModal from './components/body/ProfileModal';
 
 function App() {
   const sidebarToShow = useSelector((state) => state.sidebar.sidebarToShow);
-  const loginModalStatus= useSelector((state)=>state.sidebar.loginModalStatus)
+  const loginModalStatus = useSelector((state) => state.sidebar.loginModalStatus)
+  const profileModalStatus = useSelector((state) => state.sidebar.profileModalStatus)
   return (
     // <div>
     //   <Container>
@@ -27,11 +28,10 @@ function App() {
       <Main />
       <CreateChannelModal />
       <LoginModal />
-      {/* <>
+      {profileModalStatus && <ProfileModal />}
 
-        <LoginPage />
-      </> */}
     </Container>
+
   );
 }
 

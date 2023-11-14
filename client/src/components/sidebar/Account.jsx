@@ -3,7 +3,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import FilterHdrOutlinedIcon from '@mui/icons-material/FilterHdrOutlined';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoginModalStatus } from '../../features/sidebar/sidebarSlice';
+import { setLoginModalStatus, setProfileModalStatus } from '../../features/sidebar/sidebarSlice';
 
 const Account = () => {
   const navigate = useNavigate();
@@ -27,10 +27,17 @@ const Account = () => {
     localStorage.removeItem('token');
     location.reload();
   };
+
+  const handleMyProfileLink = (e) => {
+        e.preventDefault();
+      dispatch(setProfileModalStatus(true))
+  }
   return (
     <div className='account' style={{ backgroundColor: '#252329' }}>
       <div className='flow-1' style={{ color: 'white' }}>
-        <Link className='flex gap-1 account-modal'>
+        <Link
+          className='flex gap-1 account-modal'
+          onClick={handleMyProfileLink}>
           <AccountCircleIcon sx={{ color: 'white' }} />
           <p>My Profile</p>
         </Link>

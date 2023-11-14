@@ -20,6 +20,10 @@ const authMiddleware = async (req, res, next) => {
 
     const decoded = jwt.decode(tokenParts[1], process.env.SECRET_KEY);
 
+    //  if (decoded.exp <=  Math.floor(Date.now() / 1000) + 60 * 60) {
+    //    return res.status(401).json({ error: 'Token expired, please log in again' });
+    //  }
+
     if (!decoded || typeof decoded.id !== 'number') {
       return res
         .status(401)
