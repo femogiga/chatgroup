@@ -1,7 +1,15 @@
+import { useSelector } from 'react-redux';
 import { abbreviate } from '../../utility/abbreviation';
 import { Link } from 'react-router-dom';
+import { useCreateUserOnChannelMutation } from './../../api/userOnChannelData';
 
 const ChannelCard = ({ title, onClick }) => {
+  const roomId = useSelector((state) => state.sidebar.roomId);
+  
+  // const handleAddUserOnChannel = async () => {
+  //   const data = { userId: parsedData.id, channelId: roomId };
+  // };
+
   title = title || 'FRONTEND DEVELOPERS';
   return (
     <Link onClick={onClick}>

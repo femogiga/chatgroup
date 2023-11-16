@@ -28,7 +28,7 @@ export const useCreateUserOnChannelMutation = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useronchannel'] });
+      queryClient.invalidateQueries({ queryKey: ['userData'] });
     },
   });
 

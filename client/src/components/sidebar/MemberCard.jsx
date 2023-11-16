@@ -1,4 +1,5 @@
 const MemberCard = ({ firstName, lastName, imgUrl }) => {
+  
   return (
     <div
       className='flex gap-05 align-items--center flow-1'
