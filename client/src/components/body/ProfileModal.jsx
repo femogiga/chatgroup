@@ -12,7 +12,6 @@ function ProfileModal({ firstname, lastname, email, imageUrl }) {
     dispatch(setAccountModalVisible(false));
   };
 
-
   return (
     <div
       className='profile-modal'
@@ -71,9 +70,11 @@ function ProfileModal({ firstname, lastname, email, imageUrl }) {
 
       <article
         className='flex flow-2 gap-1 align-items--center'
-        style={{ fontSize: '1.5rem', paddingInline: '2rem' }}>
+        style={{ fontSize: '1.2rem', paddingInline: '2rem' }}>
         <div>
-          <p style={{ textDecoration: 'underline' }}>Groups</p>
+          <p style={{ textDecoration: 'underline', fontSize: '1.4rem' }}>
+            Groups
+          </p>
           <p>Front end development</p>
           <p>Backend Development</p>
           <p>Welcome</p>
