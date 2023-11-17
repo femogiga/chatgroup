@@ -74,15 +74,15 @@ export const useUpdateUerMutation = () => {
   const queryClient = useQueryClient();
 
   const { isLoading, isSuccess, error, mutate } = useMutation({
-    mutationFn: async (id, data) => {
+    mutationFn: async ({ id, data }) => {
       const response = await apiService.put(`/users/${id}`, data);
-      // console.log(response.data);
+      console.log('datatoSend=======>' ,data);
       return response.data;
     },
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['useronchannel'] });
+     onSuccess: ({data}) => {
+       queryClient.invalidateQueries({ queryKey: ['useronchannel'] });
 
-      // localStorage.setItem('userData', JSON.stringify(data.user));
+       localStorage.setItem('userData', JSON.stringify(data.updatedUser));
     },
   });
 

@@ -25,25 +25,25 @@ const RegisterModal = () => {
   };
 
   const { isLoading, isSuccess, error, mutate } = useUpdateUerMutation();
-
-  const handleUpdate = async (e) => {
+ const data = {
+   firstname,
+   lastname: lastname,
+   email: email,
+   password: password,
+   imgUrl: imgUrl,
+ };
+  const handleUpdate =  async (e) => {
     e.preventDefault();
-    const data = {
-      firstname,
-      lastname: lastname,
-      email: email,
-      password: password,
-      imgUrl: imgUrl,
-    };
+
 
     try {
-      const parsedData = await JSON.parse(userData);
+      const parsedData =  JSON.parse(userData);
       if (!parsedData) {
         return;
       }
 
        console.log('dattaaForupdate', data);
-      isLoading ? 'Loading': mutate(parsedData?.id, data);
+      await mutate({ id: parsedData?.id, data });
     } catch (e) {
       console.error(e);
     }
@@ -71,7 +71,7 @@ const RegisterModal = () => {
         Update profile
       </h1>
       <Avatar
-        src={''}
+        src={parsedData?.imgUrl || imgUrl}
         sx={{
           width: '120px',
           height: '120px',
@@ -162,7 +162,7 @@ const RegisterModal = () => {
           />
         </Stack>
         <Button
-          onClick={handleUpdate}
+          onClick={(e) => handleUpdate(e)}
           style={{
             backgroundColor: 'green',
             width: '3rem',

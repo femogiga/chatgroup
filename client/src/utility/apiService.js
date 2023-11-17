@@ -36,7 +36,7 @@ const put = (url, data) => {
   const token = localStorage.getItem('token');
   return axios.patch(`${baseUrl}${url}`, data, {
     headers: {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
   });
