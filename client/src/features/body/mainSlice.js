@@ -9,12 +9,16 @@ const mainSlice = createSlice({
     email: '',
     password: '',
     authenticatedState: false,
-    authData:null
+    authData: null,
+    firstname: '',
+    lastname: '',
+    imgUrl:''
   },
   reducers: {
     setInputValue: (state, action) => {
       const { fieldName, value } = action.payload;
       state[fieldName] = value;
+      
     },
     clearInput: (state, action) => {
       const { fieldName } = action.payload;

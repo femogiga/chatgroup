@@ -6,13 +6,15 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './features/store.js';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import LoginModal from './components/body/LoginModal.jsx';
 
 const queryClient = new QueryClient();
-const Root = () => {
+export const Root = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />} />
+        {/* <Route path='/register' element={<LoginModal />} /> */}
       </Routes>
     </BrowserRouter>
   );

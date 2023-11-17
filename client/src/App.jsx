@@ -8,11 +8,14 @@ import Login from './components/sidebar/Login';
 import SidebarFooter from './components/sidebar/SidebarFooter';
 import LoginModal from './components/body/LoginModal';
 import ProfileModal from './components/body/ProfileModal';
+import RegisterModal from './components/body/RegisterModal';
+
 
 function App() {
   const sidebarToShow = useSelector((state) => state.sidebar.sidebarToShow);
   const loginModalStatus = useSelector((state) => state.sidebar.loginModalStatus)
   const profileModalStatus = useSelector((state) => state.sidebar.profileModalStatus)
+  const registerModalStatus = useSelector((state) => state.sidebar.registerModalStatus)
   return (
     // <div>
     //   <Container>
@@ -29,7 +32,7 @@ function App() {
       <CreateChannelModal />
       <LoginModal />
       {profileModalStatus && <ProfileModal />}
-
+      {registerModalStatus && <RegisterModal/>}
     </Container>
 
   );

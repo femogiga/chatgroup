@@ -1,17 +1,32 @@
-import { Avatar, Button } from '@mui/material';
+import { Avatar, Button, Stack } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import {
   setAccountModalVisible,
   setProfileModalStatus,
+  setRegisterModalStatus,
 } from '../../features/sidebar/sidebarSlice';
-function ProfileModal({ firstname, lastname, email, imageUrl }) {
-  (firstname = 'Bola'), (lastname = 'Tinubu');
+import { useUserGroup } from '../../api/userData';
+import { isPending } from '@reduxjs/toolkit';
+function ProfileModal() {
+  // (firstname = 'Bola'), (lastname = 'Tinubu');
   const dispatch = useDispatch();
   const handleCloseModal = (e) => {
     dispatch(setProfileModalStatus(false));
     dispatch(setAccountModalVisible(false));
   };
-
+  const userIdFromStorage = localStorage.getItem('userData');
+  const parsedData = JSON.parse(userIdFromStorage);
+  // console.log('parsedDataid======>',parsedData.id)
+  // const { isPending, error, data } = useUserGroup(parsedData?.id);
+  //console.log('groups===>',data)
+  const { id, firstname, lastname, imgUrl, email } = parsedData;
+  const { isPending, error, data } = useUserGroup(id);
+  console.log('parsedDataid======>', id);
+  console.log('groups===>', data);
+  const handleEditButton = () => {
+    dispatch(setRegisterModalStatus(true))
+    dispatch(setProfileModalStatus(false))
+  }
   return (
     <div
       className='profile-modal'
@@ -35,6 +50,7 @@ function ProfileModal({ firstname, lastname, email, imageUrl }) {
         Profile
       </h1>
       <Avatar
+        src={imgUrl}
         sx={{
           width: '150px',
           height: '150px',
@@ -59,7 +75,7 @@ function ProfileModal({ firstname, lastname, email, imageUrl }) {
         className='flex flow-1 gap-1 align-items--center'
         style={{ fontSize: '1.4rem', paddingInline: '2rem' }}>
         <p>Email:</p>
-        <p>{firstname || 'tinubu@gmail.com'}</p>
+        <p>{email || 'tinubu@gmail.com'}</p>
       </article>
       <article
         className='flex flow-1 gap-1 align-items--center'
@@ -75,22 +91,40 @@ function ProfileModal({ firstname, lastname, email, imageUrl }) {
           <p style={{ textDecoration: 'underline', fontSize: '1.4rem' }}>
             Groups
           </p>
-          <p>Front end development</p>
+          {isPending
+            ? 'Loading'
+            : data?.combinedData.map((group, index) => (
+                <p key={`grp-${index}`}>{group.name}</p>
+              ))}
+          {/* <p>Front end development</p>
           <p>Backend Development</p>
           <p>Welcome</p>
-          <p>Cats and dog</p>
+          <p>Cats and dog</p> */}
         </div>
       </article>
-      <Button
-        onClick={handleCloseModal}
-        style={{
-          backgroundColor: 'green',
-          width: '3rem',
-          color: 'white',
-          margin: '0 auto',
-        }}>
-        Leave
-      </Button>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
+        <Button
+          onClick={handleEditButton}
+          style={{
+            backgroundColor: 'green',
+            width: '3rem',
+            color: 'white',
+            // margin: '0 auto',
+            marginLeft: '2rem',
+          }}>
+          Edit
+        </Button>
+        <Button
+          onClick={handleCloseModal}
+          style={{
+            backgroundColor: 'green',
+            width: '3rem',
+            color: 'white',
+            // margin: '0 auto',
+          }}>
+          Leave
+        </Button>
+      </div>
     </div>
   );
 }

@@ -32,4 +32,14 @@ const getById = (url, id) => {
   });
 };
 
-export default { get, post, getById };
+const put = (url, data) => {
+  const token = localStorage.getItem('token');
+  return axios.patch(`${baseUrl}${url}`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export default { get, post, getById, put };

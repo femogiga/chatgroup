@@ -11,6 +11,7 @@ import {
   setAddChannelButtonStatus,
   setLoginLogoutStatus,
   setLoginModalStatus,
+  setRegisterModalStatus,
 } from '../../features/sidebar/sidebarSlice';
 import {
   clearInput,
@@ -18,7 +19,7 @@ import {
   setInputValue,
 } from '../../features/body/mainSlice';
 import { useCreateChannelMutation } from '../../api/channelData';
-import { useLoginMutation } from '../../api/userData';
+import { useLoginMutation, useRegisterMutation } from '../../api/userData';
 import { useNavigate } from 'react-router-dom';
 
 function LoginModal() {
@@ -33,6 +34,12 @@ function LoginModal() {
   const email = useSelector((state) => state.main.email);
   const password = useSelector((state) => state.main.password);
   const { isLoading, isSuccess, error, mutate } = useLoginMutation();
+  const {
+    isLoading: isregisterLoading,
+    isSuccess:isRegisterSuccess,
+    error: registerError,
+    mutate: registerMutate,
+  } = useRegisterMutation();
 
   const handleLogin = async () => {
     const data = { email: email, password: password };
@@ -44,6 +51,26 @@ function LoginModal() {
     setTimeout(function () {
       location.reload();
     }, 1000);
+  };
+
+  const handleRegister = async (e) => {
+    const data = {
+      email: email,
+      password: password,
+      firstname: '',
+      lastname: '',
+      imgUrl: '',
+    };
+    const response = registerMutate(data);
+    const user = localStorage.getItem('userData');
+    console.log(response);
+    const isAuthenticated = user !== null;
+    if (!isAuthenticated) {
+      await dispatch(setLoginModalStatus(false));
+      // await dispatch(setRegisterModalStatus(true));
+      console.log('datatoRegisdter===>', data);
+      return null;
+    }
   };
 
   const handleOpenModal = (e) => {
@@ -138,8 +165,12 @@ function LoginModal() {
             />
           </DialogContent>
           <DialogActions>
-            <Button type='cancel' variant='' onClick={handleCloseModal}>
-              cancel
+            <Button
+              type='submit'
+              variant=''
+              sx={{ backgroundColor: '#004953' }}
+              onClick={handleRegister}>
+              Register
             </Button>
             <Button type='submit' variant='contained' onClick={handleLogin}>
               Login
