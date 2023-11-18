@@ -7,6 +7,7 @@ import {
 } from '../../features/sidebar/sidebarSlice';
 import { useUserGroup } from '../../api/userData';
 import { isPending } from '@reduxjs/toolkit';
+import { setInputValue } from '../../features/body/mainSlice';
 function ProfileModal() {
   // (firstname = 'Bola'), (lastname = 'Tinubu');
   const dispatch = useDispatch();
@@ -24,9 +25,13 @@ function ProfileModal() {
   console.log('parsedDataid======>', id);
   console.log('groups===>', data);
   const handleEditButton = () => {
-    dispatch(setRegisterModalStatus(true))
-    dispatch(setProfileModalStatus(false))
-  }
+    dispatch(setInputValue({ fieldName: 'firstname', value: parsedData?.firstname }));
+    dispatch(setInputValue({ fieldName: 'lastname', value: parsedData?.lastname }));
+    dispatch(setInputValue({ fieldName: 'email', value: parsedData?.email }));
+    dispatch(setInputValue({ fieldName: 'imgUrl', value: parsedData?.imgUrl }));
+    dispatch(setRegisterModalStatus(true));
+    dispatch(setProfileModalStatus(false));
+  };
   return (
     <div
       className='profile-modal'

@@ -2,7 +2,10 @@ import { Avatar, Button, Stack, TextField } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setInputValue } from '../../features/body/mainSlice';
-import { setRegisterModalStatus } from '../../features/sidebar/sidebarSlice';
+import {
+  setAccountModalVisible,
+  setRegisterModalStatus,
+} from '../../features/sidebar/sidebarSlice';
 import { useUpdateUerMutation } from '../../api/userData';
 
 const RegisterModal = () => {
@@ -25,25 +28,32 @@ const RegisterModal = () => {
   };
 
   const { isLoading, isSuccess, error, mutate } = useUpdateUerMutation();
- const data = {
-   firstname,
-   lastname: lastname,
-   email: email,
-   password: password,
-   imgUrl: imgUrl,
- };
-  const handleUpdate =  async (e) => {
-    e.preventDefault();
 
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    if (password == '') {
+      return;
+    }
+    const data = {
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      password: password,
+      imgUrl: imgUrl,
+    };
 
     try {
-      const parsedData =  JSON.parse(userData);
+      const parsedData = JSON.parse(userData);
       if (!parsedData) {
         return;
       }
 
-       console.log('dattaaForupdate', data);
+      console.log('dattaaForupdate', data);
       await mutate({ id: parsedData?.id, data });
+      setTimeout(() => {
+        dispatch(setRegisterModalStatus(false));
+        dispatch(setAccountModalVisible(false));
+      }, 1000);
     } catch (e) {
       console.error(e);
     }

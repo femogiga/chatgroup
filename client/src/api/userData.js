@@ -71,17 +71,19 @@ export const useRegisterMutation = () => {
 };
 
 export const useUpdateUerMutation = () => {
+
   const queryClient = useQueryClient();
 
   const { isLoading, isSuccess, error, mutate } = useMutation({
+  
     mutationFn: async ({ id, data }) => {
       const response = await apiService.put(`/users/${id}`, data);
-      console.log('datatoSend=======>' ,data);
+      // console.log('datatoSend=======>' ,data);
       return response.data;
     },
      onSuccess: ({data}) => {
        queryClient.invalidateQueries({ queryKey: ['useronchannel'] });
-
+      console.log('datatoSend=======>' ,data);
        localStorage.setItem('userData', JSON.stringify(data.updatedUser));
     },
   });
