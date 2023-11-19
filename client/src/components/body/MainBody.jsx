@@ -20,8 +20,11 @@ import apiService from '../../utility/apiService';
 import { useQueryClient } from '@tanstack/react-query';
 import { useCreateChatMutation } from '../../api/chatData';
 import { setLoginModalStatus } from '../../features/sidebar/sidebarSlice';
+import { useRef } from 'react';
+
 
 const MainBody = () => {
+  const messagesEndRef = useRef(null);
   const roomId = useSelector((state) => state.sidebar.roomId);
   const content = useSelector((state) => state.main.content);
   const dispatch = useDispatch();
@@ -33,10 +36,19 @@ const MainBody = () => {
     dispatch(setLoginModalStatus(true));
     return null;
   }
-  //else
-  //{
-  //   dispatch(setLoginModalStatus(false));
-  // }
+ const scrollToBottom = () => {
+   if (messagesEndRef.current) {
+     messagesEndRef.current.scrollIntoView({
+       behavior: 'smooth',
+       block: 'end',
+       inline: 'nearest',
+     });
+   }
+ };
+
+  useEffect(() => {
+    scrollToBottom()
+  },[content])
 
   const handleSendMessage = async () => {
     try {
@@ -51,7 +63,8 @@ const MainBody = () => {
       // if (result.error) {
       //   return;
       // }
-      dispatch(clearInput({ fieldName: 'content' }));
+     await dispatch(clearInput({ fieldName: 'content' }));
+     await scrollToBottom()
     } catch (err) {
       console.error(err);
     }
@@ -89,9 +102,9 @@ const MainBody = () => {
 
   console.log('grouped====>', groupedData);
 
-  let prev = null
+
   return (
-    <div className='main'>
+    <div className='main' >
       <header className='main-header'>
         <p>{channelName}</p>
       </header>
@@ -99,57 +112,26 @@ const MainBody = () => {
         <section className='flow-2'>
           {groupedData &&
             groupedData.map((item, index) => (
-              <div key={`group_${index}`}>
-                {/* { <Seperator chatDate={item.date} key={`sep_${item.date}`} />} */}
-                {item.chat
-                  .filter((group) => roomId === group.roomId)
-                  .map((chat) => (
-                    <ChatCard
-                      key={`chat_${chat.id}`}
-                      content={chat.content}
-                      firstName={chat.firstname}
-                      lastName={chat.lastname}
-                      messageDate={chat.createdAt}
-                      imgUrl={chat.imgUrl}
-                    />
-                  ))}
-              </div>
+              <>
+                <div key={`group_${index}`}>
+                  {/* { <Seperator chatDate={item.date} key={`sep_${item.date}`} />} */}
+                  {item.chat
+                    .filter((group) => roomId === group.roomId)
+                    .map((chat) => (
+                      <ChatCard
+                        key={`chat_${chat.id}`}
+                        content={chat.content}
+                        firstName={chat.firstname}
+                        lastName={chat.lastname}
+                        messageDate={chat.createdAt}
+                        imgUrl={chat.imgUrl}
+                      />
+                    ))}
+                </div>
+              </>
             ))}
+          <div ref={messagesEndRef} />
         </section>
-
-        {/* <form
-          className='main-footer send-message-form'
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSendMessage();
-            // dispatch(clearInput({fieldName:'content'}))
-          }}>
-          <div className='absolute-cont'>
-            <input
-              type='text'
-              placeholder='Type a message'
-              name='content'
-              value={content}
-              onChange={(e) =>
-                dispatch(
-                  setInputValue({ fieldName: 'content', value: e.target.value })
-                )
-              }
-            />
-            <div
-              className='send-button'
-              style={{
-                backgroundColor: '#2F80ED',
-                width: '39px',
-                height: '39px',
-                borderRadius: '8px',
-              }}>
-              <IconButton type='submit' sx={{ color: 'white' }}>
-                <SendIcon />
-              </IconButton>
-            </div>
-          </div>
-        </form> */}
       </main>
       <footer>
         <form

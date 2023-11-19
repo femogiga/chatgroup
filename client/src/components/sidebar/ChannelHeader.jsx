@@ -11,6 +11,7 @@ const ChannelHeader = () => {
     <article style={{ marginTop: '1rem' }}>
       <p className='flow-1 bold-700'>{channelName}</p>
       <p className='flow-1'>{channelDescription}</p>
+      
     </article>
   );
 };
