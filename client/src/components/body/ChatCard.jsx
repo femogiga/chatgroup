@@ -3,7 +3,13 @@ import { dateFormattter } from './../../utility/dateFormatter';
 const ChatCard = ({ content, firstName, lastName, messageDate, imgUrl }) => {
   console.log('firstname===>', firstName);
   return (
-    <article className='chat-card flow-2'>
+    <article
+      className='chat-card flow-2'
+      style={{
+        backgroundColor: '#3C393F',
+        padding: '.4rem',
+        borderRadius: '8px',
+      }}>
       <div className='flex gap-1'>
         <div className='photo-container flex'>
           <img

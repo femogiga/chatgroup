@@ -33,6 +33,7 @@
 .login {
     height: 100%;
     padding-inline: 1rem;
+    max-width:100%;
 
 }
 
