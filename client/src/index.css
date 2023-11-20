@@ -19,8 +19,8 @@
 
 
 body {
-  width: 85%;
-  max-width: 2700px;
+  width: 90%;
+  max-width: 3000px;
   margin-inline: auto;
   height: 100vh;
   background-color: black;
@@ -176,7 +176,7 @@ a {
   grid-row: 2;
   background-color: var(--clr-dark-mid);
   overflow-y: scroll;
-
+  padding: 3rem;
 
 }
 
@@ -201,6 +201,11 @@ a {
 
 
 @media only screen and (max-width:969px) {
+
+  body {
+    width: 99%
+  }
+
   .container {
     display: flex;
     flex-direction: column;
@@ -226,8 +231,22 @@ a {
     display: block;
   }
 
-  .main .main-header button:active .sidebar {
 
-    display: initial;
+}
+
+
+@media only screen and (max-width:474px) {
+
+  .main-header {
+    padding: unset;
   }
+
+  .main-body {
+    padding: 1rem;
+  }
+
+  .main-footer {
+    padding: 1rem;
+  }
+
 }

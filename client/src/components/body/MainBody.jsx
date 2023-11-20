@@ -131,10 +131,7 @@ const MainBody = () => {
         </IconButton>
         <p>{channelName}</p>
       </header>
-      <main
-        className='main-body'
-        style={{ padding: '3rem' }}
-        onClick={handleMouseLeave}>
+      <main className='main-body' onClick={handleMouseLeave}>
         <section className='flow-2'>
           {groupedData &&
             groupedData.map((item, index) => (
