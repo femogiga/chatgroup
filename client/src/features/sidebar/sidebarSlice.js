@@ -11,6 +11,7 @@ export const sidebarSlice = createSlice({
     sidebarToShow: false,
     roomId: 1,
     addChannelButtonStatus: false,
+    hamburgerClickStatus: false,
   },
   reducers: {
     setAccountModalVisible: (state) => {
@@ -36,6 +37,9 @@ export const sidebarSlice = createSlice({
     },
     setProfileModalStatus: (state, action) => {
       state.profileModalStatus = action.payload
+    },
+    setHamburgerClicksStatus: (state, action) => {
+      state.hamburgerClickStatus = action.payload
      }
 
   },
@@ -50,6 +54,7 @@ export const {
   setLoginModalStatus,
   setRegisterModalStatus,
   setProfileModalStatus,
+  setHamburgerClicksStatus,
 } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

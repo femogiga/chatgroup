@@ -19,7 +19,10 @@ import { clearInput, setInputValue } from '../../features/body/mainSlice';
 import apiService from '../../utility/apiService';
 import { useQueryClient } from '@tanstack/react-query';
 import { useCreateChatMutation } from '../../api/chatData';
-import { setLoginModalStatus } from '../../features/sidebar/sidebarSlice';
+import {
+  setHamburgerClicksStatus,
+  setLoginModalStatus,
+} from '../../features/sidebar/sidebarSlice';
 import { useRef } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -100,17 +103,38 @@ const MainBody = () => {
     data: groupedData,
   } = useGroupedChatData();
 
-  console.log('grouped====>', groupedData);
+  const handleHamburgerClick = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const sidebar = document.querySelector('.sidebar');
+    dispatch(setHamburgerClicksStatus(true));
+    sidebar.style.display = 'unset';
+    sidebar.classList.add('.show');
+  };
+
+  const handleMouseLeave = (e) => {
+    e.preventDefault();
+    const mainBody = document.querySelector('main');
+    const sidebar = document.querySelector('.sidebar');
+    mainBody.addEventListener('click', () => {
+      sidebar.style.display = 'none';
+    });
+  };
 
   return (
     <div className='main'>
       <header className='main-header flex gap-1'>
-        <IconButton sx={{ marginBlockStart: '.5rem' }}>
+        <IconButton
+          sx={{ marginBlockStart: '.5rem' }}
+          onClick={handleHamburgerClick}>
           <MenuIcon />
         </IconButton>
         <p>{channelName}</p>
       </header>
-      <main className='main-body' style={{ padding: '3rem' }}>
+      <main
+        className='main-body'
+        style={{ padding: '3rem' }}
+        onClick={handleMouseLeave}>
         <section className='flow-2'>
           {groupedData &&
             groupedData.map((item, index) => (
