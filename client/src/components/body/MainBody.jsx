@@ -21,7 +21,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useCreateChatMutation } from '../../api/chatData';
 import { setLoginModalStatus } from '../../features/sidebar/sidebarSlice';
 import { useRef } from 'react';
-
+import MenuIcon from '@mui/icons-material/Menu';
 
 const MainBody = () => {
   const messagesEndRef = useRef(null);
@@ -36,19 +36,19 @@ const MainBody = () => {
     dispatch(setLoginModalStatus(true));
     return null;
   }
- const scrollToBottom = () => {
-   if (messagesEndRef.current) {
-     messagesEndRef.current.scrollIntoView({
-       behavior: 'smooth',
-       block: 'end',
-       inline: 'nearest',
-     });
-   }
- };
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+        inline: 'nearest',
+      });
+    }
+  };
 
   useEffect(() => {
-    scrollToBottom()
-  },[content])
+    scrollToBottom();
+  }, [content]);
 
   const handleSendMessage = async () => {
     try {
@@ -63,8 +63,8 @@ const MainBody = () => {
       // if (result.error) {
       //   return;
       // }
-     await dispatch(clearInput({ fieldName: 'content' }));
-     await scrollToBottom()
+      scrollToBottom();
+      await dispatch(clearInput({ fieldName: 'content' }));
     } catch (err) {
       console.error(err);
     }
@@ -102,10 +102,12 @@ const MainBody = () => {
 
   console.log('grouped====>', groupedData);
 
-
   return (
-    <div className='main' >
-      <header className='main-header'>
+    <div className='main'>
+      <header className='main-header flex gap-1'>
+        <IconButton sx={{ marginBlockStart: '.5rem' }}>
+          <MenuIcon />
+        </IconButton>
         <p>{channelName}</p>
       </header>
       <main className='main-body' style={{ padding: '3rem' }}>
