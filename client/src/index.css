@@ -150,7 +150,7 @@ a {
   /* width:100%;
   height:100%; */
   background-color: white;
-
+position:relative;
 }
 
 .main {
@@ -231,7 +231,23 @@ a {
     display: block;
   }
 
+  .profile-modal{
+    max-width:60%;
 
+  }
+
+  .register-modal  input{
+    width:15rem;
+  }
+
+
+}
+
+@media only screen and (max-width:600px) {
+  .profile-modal{
+    left:0%;
+
+  }
 }
 
 

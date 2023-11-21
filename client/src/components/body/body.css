@@ -26,12 +26,12 @@ hr {
 
 .send-message-form input[type="text"] {
     width: 100%;
-    color:white;
+    color: white;
     height: 52px;
     border-radius: 8px;
     border: unset;
     background-color: #3C393F;
-    padding-inline-start:1rem;
+    padding-inline-start: 1rem;
     /* width:50em;
     max-width:60rem; */
 
@@ -61,4 +61,20 @@ hr {
     min-height: 42px;
     max-width: 42px;
     max-height: 42px;
+}
+
+.register-modal,.profile-modal {
+    width:40%;
+    max-width: 40%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-block: 2rem;
+    min-width: 360px;
+    position: absolute;
+    z-index: 3;
+    left: 30%;
+    top: 4rem;
+    background-color: #120F13;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.43);
 }

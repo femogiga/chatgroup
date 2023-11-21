@@ -25,8 +25,12 @@ function ProfileModal() {
   console.log('parsedDataid======>', id);
   console.log('groups===>', data);
   const handleEditButton = () => {
-    dispatch(setInputValue({ fieldName: 'firstname', value: parsedData?.firstname }));
-    dispatch(setInputValue({ fieldName: 'lastname', value: parsedData?.lastname }));
+    dispatch(
+      setInputValue({ fieldName: 'firstname', value: parsedData?.firstname })
+    );
+    dispatch(
+      setInputValue({ fieldName: 'lastname', value: parsedData?.lastname })
+    );
     dispatch(setInputValue({ fieldName: 'email', value: parsedData?.email }));
     dispatch(setInputValue({ fieldName: 'imgUrl', value: parsedData?.imgUrl }));
     dispatch(setRegisterModalStatus(true));
@@ -38,18 +42,8 @@ function ProfileModal() {
       style={{
         color: 'white',
         // border: '1px solid white',
-        width: '40%',
-        margin: '0 auto',
-        display: 'flex',
-        flexDirection: 'column',
-        paddingBlock: '2rem',
-        minWidth: '360px',
-        position: 'absolute',
-        zIndex: '3',
-        left: '30%',
-        top: '4rem',
-        backgroundColor: '#120F13',
-        boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.43)',
+
+       
       }}>
       <h1 className='flow-2' style={{ alignSelf: 'center' }}>
         Profile
