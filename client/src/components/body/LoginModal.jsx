@@ -68,7 +68,7 @@ function LoginModal() {
     if (!isAuthenticated) {
       await dispatch(setLoginModalStatus(false));
       // await dispatch(setRegisterModalStatus(true));
-      console.log('datatoRegisdter===>', data);
+
       return null;
     }
   };
@@ -83,8 +83,7 @@ function LoginModal() {
     // e.preventDefault()
     dispatch(setLoginModalStatus(false));
   };
-  console.log('email', email);
-  console.log('password', password);
+  
   return (
     <form style={{}}>
       <Dialog open={loginModalStatus} onClose={handleCloseModal}>

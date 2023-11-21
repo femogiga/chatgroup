@@ -1,7 +1,7 @@
 import { dateFormattter } from './../../utility/dateFormatter';
 
 const ChatCard = ({ content, firstName, lastName, messageDate, imgUrl }) => {
-  console.log('firstname===>', firstName);
+  
   return (
     <article
       className='chat-card flow-2'

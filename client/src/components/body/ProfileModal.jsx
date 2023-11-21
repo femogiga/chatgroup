@@ -2,6 +2,7 @@ import { Avatar, Button, Stack } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import {
   setAccountModalVisible,
+  setLoginModalStatus,
   setProfileModalStatus,
   setRegisterModalStatus,
 } from '../../features/sidebar/sidebarSlice';
@@ -11,7 +12,7 @@ import { setInputValue } from '../../features/body/mainSlice';
 function ProfileModal() {
   // (firstname = 'Bola'), (lastname = 'Tinubu');
   const dispatch = useDispatch();
-  const handleCloseModal = (e) => {
+  const handleCloseModal = async (e) => {
     dispatch(setProfileModalStatus(false));
     dispatch(setAccountModalVisible(false));
   };
@@ -22,8 +23,7 @@ function ProfileModal() {
   //console.log('groups===>',data)
   const { id, firstname, lastname, imgUrl, email } = parsedData;
   const { isPending, error, data } = useUserGroup(id);
-  console.log('parsedDataid======>', id);
-  console.log('groups===>', data);
+
   const handleEditButton = () => {
     dispatch(
       setInputValue({ fieldName: 'firstname', value: parsedData?.firstname })
@@ -42,8 +42,6 @@ function ProfileModal() {
       style={{
         color: 'white',
         // border: '1px solid white',
-
-       
       }}>
       <h1 className='flow-2' style={{ alignSelf: 'center' }}>
         Profile

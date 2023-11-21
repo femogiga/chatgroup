@@ -58,10 +58,9 @@ const chatById = async (req, res, next) => {
 const postChat = async (req, res, next) => {
   try {
     const { content, authorId, roomId } = req.body;
-    console.log('body===>', req.body);
-    console.log('roomId===>', roomId);
-    console.log('authorId===>', authorId);
-    // Check if authorId and roomId are not null
+    if (content == '') {
+      return;
+    }
     if (!authorId || !roomId) {
       return res
         .status(400)

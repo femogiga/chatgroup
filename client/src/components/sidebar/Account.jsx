@@ -3,7 +3,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import FilterHdrOutlinedIcon from '@mui/icons-material/FilterHdrOutlined';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoginModalStatus, setProfileModalStatus } from '../../features/sidebar/sidebarSlice';
+import {
+  setAccountModalVisible,
+  setLoginModalStatus,
+  setProfileModalStatus,
+} from '../../features/sidebar/sidebarSlice';
 
 const Account = () => {
   const navigate = useNavigate();
@@ -29,9 +33,10 @@ const Account = () => {
   };
 
   const handleMyProfileLink = (e) => {
-        e.preventDefault();
-      dispatch(setProfileModalStatus(true))
-  }
+    e.preventDefault();
+    dispatch(setProfileModalStatus(true));
+    dispatch(setAccountModalVisible(false));
+  };
   return (
     <div className='account' style={{ backgroundColor: '#252329' }}>
       <div className='flow-1' style={{ color: 'white' }}>
