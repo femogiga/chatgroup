@@ -103,10 +103,10 @@ function ProfileModal() {
         <Button
           onClick={handleEditButton}
           style={{
-            backgroundColor: 'green',
+            backgroundColor: '#00308F',
             width: '3rem',
             color: 'white',
-            // margin: '0 auto',
+
             marginLeft: '2rem',
           }}>
           Edit
@@ -114,7 +114,7 @@ function ProfileModal() {
         <Button
           onClick={handleCloseModal}
           style={{
-            backgroundColor: 'green',
+            backgroundColor: '#18453B',
             width: '3rem',
             color: 'white',
             // margin: '0 auto',

@@ -166,7 +166,7 @@ const RegisterModal = () => {
         <Button
           onClick={(e) => handleUpdate(e)}
           style={{
-            backgroundColor: 'green',
+            backgroundColor: '#13274F',
             width: '3rem',
             color: 'white',
             marginInlineStart: '2rem',
@@ -176,7 +176,7 @@ const RegisterModal = () => {
         <Button
           onClick={() => dispatch(setRegisterModalStatus(false))}
           style={{
-            backgroundColor: 'red',
+            backgroundColor: '#7C3030',
             width: '3rem',
             color: 'white',
             marginInlineStart: '2rem',
