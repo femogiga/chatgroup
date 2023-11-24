@@ -25,5 +25,10 @@
   },
   "prisma": {
     "seed": "node prisma/seed.js"
+  },
+  {
+    "name": "express-locallibrary-tutorial",
+    "engines": {
+      "node": ">=16.17.1"
+    }
   }
-}
