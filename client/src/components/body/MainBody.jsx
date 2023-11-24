@@ -135,25 +135,24 @@ const MainBody = () => {
         <section className='flow-2'>
           {groupedData &&
             groupedData.map((item, index) => (
-              <>
-                <div key={`group_${index}`}>
-                  {/* { <Seperator chatDate={item.date} key={`sep_${item.date}`} />} */}
-                  {item.chat
-                    .filter((group) => roomId === group.roomId)
-                    .map((chat) => (
-                      <ChatCard
-                        key={`chat_${chat.id}`}
-                        content={chat.content}
-                        firstName={chat.firstname}
-                        lastName={chat.lastname}
-                        messageDate={chat.createdAt}
-                        imgUrl={chat.imgUrl}
-                      />
-                    ))}
-                </div>
-              </>
+              <div key={`group_${index}`}>
+                {/* { <Seperator chatDate={item.date} key={`sep_${item.date}`} />} */}
+                {item.chat
+                  .filter((group) => roomId === group.roomId)
+                  .map((chat) => (
+                    <ChatCard
+                      key={`chat_${chat.id}`}
+                      content={chat.content}
+                      firstName={chat.firstname}
+                      lastName={chat.lastname}
+                      messageDate={chat.createdAt}
+                      imgUrl={chat.imgUrl}
+                    />
+                  ))}
+              </div>
             ))}
-          <div ref={messagesEndRef} />
+          {/* Place the scrolling reference here */}
+          <div ref={messagesEndRef}></div>
         </section>
       </main>
       <footer>
