@@ -23,12 +23,7 @@
     "prisma": "^5.5.2",
     "socket.io-client": "^4.7.2"
   },
-  "prisma": {
-    "seed": "node prisma/seed.js"
-  },
-  {
-    "name": "express-locallibrary-tutorial",
-    "engines": {
-      "node": ">=16.17.1"
-    }
+  "engines": {
+    "node": ">=16.17.1"
   }
+}
