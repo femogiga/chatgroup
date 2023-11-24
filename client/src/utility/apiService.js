@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:9000';
+//const baseUrl = 'http://localhost:9000';
+const baseUrl = 'https://chatgroup.vercel.app';
+
 
 const get = (url) => {
   const token = localStorage.getItem('token');

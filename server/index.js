@@ -22,10 +22,10 @@ app.use(cors());
 // app.use('/subscribe', authMiddleware, userOnChannelRoute);
 // app.use('/auth', authRoute);
 //////
-app.use('/users',authMiddleware, userRoute);
-app.use('/chats', authMiddleware,chatRoute);
+app.use('/users', authMiddleware, userRoute);
+app.use('/chats', authMiddleware, chatRoute);
 app.use('/channels', authMiddleware, channelRoute);
-app.use('/subscriptions',authMiddleware, userOnChannelRoute);
+app.use('/subscriptions', authMiddleware, userOnChannelRoute);
 // app.use('/auth',authMiddleware, authRoute);
 app.use('/auth', authRoute);
 
